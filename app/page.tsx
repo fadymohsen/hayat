@@ -21,6 +21,7 @@ import { StatCounter } from "@/components/StatCounter";
 import { GalleryGrid, galleryItems } from "@/components/GalleryGrid";
 import { useLanguage } from "@/components/LanguageProvider";
 import { Partners } from "@/components/Partners";
+import { DynamicMeta } from "@/components/DynamicMeta";
 
 export default function HomePage() {
   const { t, locale } = useLanguage();
@@ -57,6 +58,7 @@ export default function HomePage() {
 
   return (
     <>
+      <DynamicMeta path="/" />
       {/* HERO */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background Image */}

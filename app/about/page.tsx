@@ -16,6 +16,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { useLanguage } from "@/components/LanguageProvider";
 import { Partners } from "@/components/Partners";
+import { DynamicMeta } from "@/components/DynamicMeta";
 
 export default function AboutPage() {
   const { t } = useLanguage();
@@ -29,6 +30,7 @@ export default function AboutPage() {
 
   return (
     <>
+      <DynamicMeta path="/about" />
       {/* HERO */}
       <section className="relative overflow-hidden border-b border-slate-100 bg-slate-50 py-20 dark:border-slate-800 dark:bg-slate-950/50 sm:py-28">
         <div className="absolute inset-0 bg-grid opacity-50" aria-hidden />

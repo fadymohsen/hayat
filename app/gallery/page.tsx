@@ -5,12 +5,14 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GalleryGrid } from "@/components/GalleryGrid";
 import { useLanguage } from "@/components/LanguageProvider";
+import { DynamicMeta } from "@/components/DynamicMeta";
 
 export default function GalleryPage() {
   const { t, locale } = useLanguage();
 
   return (
     <>
+      <DynamicMeta path="/gallery" />
       <section className="relative overflow-hidden border-b border-slate-100 bg-slate-50 py-20 dark:border-slate-800 dark:bg-slate-900 sm:py-24">
         <div className="absolute inset-0 bg-grid opacity-50" aria-hidden />
         <div className="absolute inset-0 bg-radial-gold" aria-hidden />
