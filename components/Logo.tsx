@@ -20,35 +20,22 @@ export function Logo({
   return (
     <Link
       href="/"
-      className={cn("group flex items-center gap-3", className)}
-      aria-label={`${t.nav.logoTitle} — MAAD`}
+      className={cn("group flex items-center justify-center", className)}
+      aria-label={`${t.nav.logoTitle} — Hayat`}
     >
       <span
-        className="relative flex items-center justify-center rounded-xl ring-1 ring-maad-100 bg-white shadow-sm transition group-hover:ring-maad-300 group-hover:shadow-md dark:ring-slate-800 dark:bg-slate-900"
-        style={{ width: dim, height: dim }}
+        className="relative flex items-center justify-center transition-transform group-hover:scale-105"
+        style={{ width: dim * 2.5, height: dim * 2 }} 
       >
         <Image
-          src="/logo/maad-logo.jpeg"
-          alt="MAAD logo"
-          width={dim}
-          height={dim}
-          className="rounded-lg object-contain"
+          src="/logo/new-logo.jpeg"
+          alt="Hayat Real Estate Investment & Development"
+          fill
+          className="object-contain"
           priority
         />
       </span>
-      {showText && (
-        <span className={cn(
-          "flex flex-col leading-tight",
-          locale === "ar" ? "items-end" : "items-start"
-        )}>
-          <span className="text-sm font-bold tracking-wide text-slate-900 dark:text-white sm:text-base">
-            {t.nav.logoTitle}
-          </span>
-          <span className="text-[11px] font-medium text-maad-600 sm:text-xs">
-            {t.nav.logoSub}
-          </span>
-        </span>
-      )}
     </Link>
   );
 }
+
