@@ -60,7 +60,7 @@ export default function HomePage() {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <Image
-          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"
+          src="/hero-bg.jpg"
           alt="Hayat Real Estate"
           fill
           sizes="100vw"
