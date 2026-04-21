@@ -76,7 +76,7 @@ export function Header() {
         locale === "ar" ? "font-arabic" : "font-english"
       )}
     >
-      <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-24 sm:h-28 w-full max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <Logo />
 
         <nav className="hidden items-center gap-1 lg:flex">
@@ -143,7 +143,7 @@ export function Header() {
             className="fixed inset-0 z-[70] flex flex-col bg-white dark:bg-slate-950 lg:hidden"
           >
             {/* Mobile Menu Header */}
-            <div className="flex h-20 items-center justify-between border-b border-slate-100/50 px-4 dark:border-slate-800/50 sm:px-6">
+            <div className="flex h-24 items-center justify-between border-b border-slate-100/50 px-4 dark:border-slate-800/50 sm:px-6">
               <Logo />
               <div className="flex items-center gap-3">
                  <button
