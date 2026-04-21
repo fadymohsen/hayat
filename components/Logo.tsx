@@ -24,11 +24,11 @@ export function Logo({
       aria-label={`${t.nav.logoTitle} — Hayat`}
     >
       <span
-        className="relative flex items-center justify-center transition-transform group-hover:scale-105 mix-blend-multiply dark:mix-blend-normal dark:bg-[#f4f3ed] dark:p-3 dark:rounded-2xl"
+        className="relative flex items-center justify-center transition-transform group-hover:scale-105 drop-shadow-sm dark:drop-shadow-md"
         style={{ width: 150, height: 110 }} 
       >
         <Image
-          src="/logo/logo.jpeg"
+          src="/logo/logo-transperent.png"
           alt="Hayat Real Estate Investment & Development"
           fill
           className="object-contain"
