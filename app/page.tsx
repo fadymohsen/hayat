@@ -20,6 +20,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { StatCounter } from "@/components/StatCounter";
 import { GalleryGrid, galleryItems } from "@/components/GalleryGrid";
 import { useLanguage } from "@/components/LanguageProvider";
+import { Partners } from "@/components/Partners";
 
 export default function HomePage() {
   const { t, locale } = useLanguage();
@@ -216,6 +217,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* PARTNERS */}
+      <Partners />
 
       {/* CTA */}
       <section className="relative overflow-hidden bg-white dark:bg-slate-950 py-20 sm:py-24">

@@ -15,6 +15,7 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { useLanguage } from "@/components/LanguageProvider";
+import { Partners } from "@/components/Partners";
 
 export default function AboutPage() {
   const { t } = useLanguage();
@@ -184,6 +185,9 @@ export default function AboutPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* PARTNERS */}
+      <Partners />
     </>
   );
 }
