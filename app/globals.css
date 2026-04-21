@@ -5,7 +5,7 @@
 :root {
   --background: #ffffff;
   --foreground: #0f172a;
-  --maad: #caa048;
+  --maad: #8B8B3E;
   --slate-50: #f8fafc;
   --slate-100: #f1f5f9;
   --slate-200: #e2e8f0;
@@ -71,15 +71,15 @@ html[dir="ltr"] body {
 
 .dark .bg-grid {
   background-image:
-    linear-gradient(rgba(202, 160, 72, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(202, 160, 72, 0.08) 1px, transparent 1px);
+    linear-gradient(rgba(139, 139, 62, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 139, 62, 0.08) 1px, transparent 1px);
   mask-image: radial-gradient(ellipse at center, black 20%, transparent 85%);
 }
 
 .bg-radial-gold {
   background: radial-gradient(
     ellipse at top,
-    rgba(202, 160, 72, 0.15),
+    rgba(139, 139, 62, 0.15),
     transparent 60%
   );
 }
@@ -87,13 +87,13 @@ html[dir="ltr"] body {
 .dark .bg-radial-gold {
   background: radial-gradient(
     ellipse at top,
-    rgba(202, 160, 72, 0.2),
+    rgba(139, 139, 62, 0.2),
     transparent 70%
   );
 }
 
 .gold-text {
-  background: linear-gradient(120deg, #b0862f, #e0be65, #b0862f);
+  background: linear-gradient(120deg, #5D5D28, #BABA7D, #5D5D28);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
