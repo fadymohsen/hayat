@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --maad: #caa048;
+  --slate-50: #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-600: rgb(71 85 105);
+  --slate-700: #334155;
+  --slate-900: #0f172a;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #f8fafc;
+  --slate-50: #0f172a;
+  --slate-100: #1e293b;
+  --slate-200: #334155;
+  --slate-600: #ffffff;
+  --slate-700: #cbd5e1;
+  --slate-900: #f1f5f9;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "rlig" 1, "calt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Force Tajawal font for Arabic site-wide */
+html[dir="rtl"], 
+html[dir="rtl"] body,
+html[dir="rtl"] h1, 
+html[dir="rtl"] h2, 
+html[dir="rtl"] h3, 
+html[dir="rtl"] h4, 
+html[dir="rtl"] h5, 
+html[dir="rtl"] h6,
+html[dir="rtl"] p,
+html[dir="rtl"] span,
+html[dir="rtl"] a,
+html[dir="rtl"] button,
+html[dir="rtl"] input,
+html[dir="rtl"] textarea {
+  font-family: var(--font-tajawal), "Cairo", system-ui, sans-serif !important;
+}
+
+html[dir="ltr"] body {
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+/* Subtle premium background texture */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: center center;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
+
+.dark .bg-grid {
+  background-image:
+    linear-gradient(rgba(202, 160, 72, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(202, 160, 72, 0.08) 1px, transparent 1px);
+  mask-image: radial-gradient(ellipse at center, black 20%, transparent 85%);
+}
+
+.bg-radial-gold {
+  background: radial-gradient(
+    ellipse at top,
+    rgba(202, 160, 72, 0.15),
+    transparent 60%
+  );
+}
+
+.dark .bg-radial-gold {
+  background: radial-gradient(
+    ellipse at top,
+    rgba(202, 160, 72, 0.2),
+    transparent 70%
+  );
+}
+
+.gold-text {
+  background: linear-gradient(120deg, #b0862f, #e0be65, #b0862f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Bento Grid Layout (Responsive via Tailwind) */
+@layer utilities {
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-auto-rows: 240px;
+    grid-auto-flow: dense;
+    gap: 1.25rem;
+  }
+
+  .bento-item-large {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .bento-item-tall {
+    grid-row: span 2;
+  }
+
+  .bento-item-wide {
+    grid-column: span 2;
+  }
+}
+
+/* Hide scrollbar for carousels */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--slate-50); }
+::-webkit-scrollbar-thumb { background: var(--slate-200); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--maad); }
