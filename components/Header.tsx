@@ -15,6 +15,7 @@ export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const isHome = pathname === "/";
 
   useEffect(() => setOpen(false), [pathname]);
 
@@ -25,7 +26,6 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock scroll when menu is open
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
@@ -43,43 +43,28 @@ export function Header() {
     { href: "/contact", label: t.nav.contact },
   ];
 
-  const menuVariants = {
-    closed: {
-      opacity: 0,
-      transition: {
-        staggerChildren: 0.05,
-        staggerDirection: -1,
-      },
-    },
-    open: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants = {
-    closed: { opacity: 0, x: locale === "ar" ? 20 : -20 },
-    open: { opacity: 1, x: 0 },
-  };
+  // On home: transparent floating pill over hero
+  // On home + scrolled: solid white pill
+  // On other pages: white background
+  const isTransparent = isHome && !scrolled;
 
   return (
     <>
     <header
       className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-300",
-        scrolled
-          ? "bg-white/85 backdrop-blur-md border-b border-slate-100 shadow-[0_4px_20px_-10px_rgba(15,23,42,0.08)] dark:bg-slate-950/85 dark:border-slate-800 dark:shadow-[0_4px_20px_-10px_rgba(0,0,0,0.5)]"
-          : "bg-white/70 backdrop-blur-sm border-b border-transparent dark:bg-slate-950/70",
+        "fixed top-0 z-50 w-full transition-all duration-300",
         locale === "ar" ? "font-arabic" : "font-english"
       )}
     >
-      <div className="mx-auto flex h-24 sm:h-28 w-full max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        <Logo />
+      <div className={cn(
+        "mx-auto mt-4 flex h-16 w-full max-w-6xl items-center justify-between gap-4 rounded-full px-3 transition-all duration-300 sm:px-5",
+        isTransparent
+          ? "bg-black/30 backdrop-blur-md border border-white/15 shadow-lg"
+          : "bg-white/95 backdrop-blur-md border border-slate-200 shadow-md dark:bg-slate-950/95 dark:border-slate-800"
+      )}>
+        <Logo white={isTransparent} />
 
-        <nav className="hidden items-center gap-1 lg:flex">
+        <nav className="hidden items-center gap-0.5 lg:flex">
           {nav.map((item) => {
             const active =
               item.href === "/"
@@ -90,39 +75,44 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "relative rounded-lg px-4 py-2 text-sm font-medium transition-colors",
+                  "relative rounded-full px-4 py-2 text-sm font-medium transition-all duration-200",
                   active
-                    ? "text-maad-700 dark:text-maad-500"
-                    : "text-slate-700 dark:text-white hover:text-maad-600 dark:text-slate-300 dark:hover:text-maad-500"
+                    ? isTransparent
+                      ? "bg-white/20 text-white backdrop-blur-sm"
+                      : "bg-maad-500 text-white"
+                    : isTransparent
+                      ? "text-white/80 hover:text-white hover:bg-white/10"
+                      : "text-slate-600 hover:text-maad-600 hover:bg-slate-50 dark:text-slate-300 dark:hover:text-maad-500 dark:hover:bg-slate-800"
                 )}
               >
                 {item.label}
-                {active && (
-                  <motion.span
-                    layoutId="activeNav"
-                    className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-gold-gradient"
-                  />
-                )}
               </Link>
             );
           })}
         </nav>
 
         <div className="flex items-center gap-2">
-          {/* Language Toggle - Desktop */}
           <button
             onClick={toggle}
-            className="hidden h-10 items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-4 text-xs font-bold text-slate-700 shadow-sm transition hover:border-maad-400 hover:text-maad-600 dark:border-slate-600 dark:bg-slate-800 dark:text-white dark:hover:border-maad-500 sm:inline-flex"
+            className={cn(
+              "hidden h-9 items-center gap-1.5 rounded-full px-4 text-xs font-bold transition sm:inline-flex",
+              isTransparent
+                ? "border border-white/25 text-white hover:bg-white/15"
+                : "border border-slate-200 text-slate-700 hover:border-maad-400 hover:text-maad-600 dark:border-slate-600 dark:text-white dark:hover:border-maad-500"
+            )}
             aria-label="Toggle language"
           >
+            <span>{locale === "ar" ? "English" : "العربية"}</span>
             <Globe className="h-3.5 w-3.5" />
-            <span>{locale === "ar" ? "EN" : "AR"}</span>
           </button>
 
-          <ThemeToggle />
-
           <button
-            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-700 transition dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 lg:hidden"
+            className={cn(
+              "inline-flex h-9 w-9 items-center justify-center rounded-full transition lg:hidden",
+              isTransparent
+                ? "text-white hover:bg-white/15"
+                : "text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
+            )}
             onClick={() => setOpen((v) => !v)}
             aria-label="Menu"
           >
@@ -132,7 +122,7 @@ export function Header() {
       </div>
     </header>
 
-      {/* Ultra-Modern Full Screen Mobile Menu */}
+      {/* Full Screen Mobile Menu */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -142,8 +132,7 @@ export function Header() {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-[70] flex flex-col bg-white dark:bg-slate-950 lg:hidden"
           >
-            {/* Mobile Menu Header */}
-            <div className="flex h-24 items-center justify-between border-b border-slate-100/50 px-4 dark:border-slate-800/50 sm:px-6">
+            <div className="flex h-20 items-center justify-between border-b border-slate-100/50 px-4 dark:border-slate-800/50 sm:px-6">
               <Logo />
               <div className="flex items-center gap-3">
                  <button
@@ -162,9 +151,8 @@ export function Header() {
               </div>
             </div>
 
-            {/* Mobile Menu Links - Masked Reveal */}
             <div className="flex flex-1 flex-col justify-center px-8 sm:px-12">
-              <motion.div 
+              <motion.div
                 initial="closed"
                 animate="open"
                 exit="closed"
@@ -194,7 +182,7 @@ export function Header() {
                         >
                           <span>{item.label}</span>
                           {active && (
-                            <motion.span 
+                            <motion.span
                               layoutId="mobileActive"
                               className="h-3 w-3 rounded-full bg-gold-gradient"
                             />
@@ -207,8 +195,7 @@ export function Header() {
               </motion.div>
             </div>
 
-            {/* Premium Bento Grid Footer */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
