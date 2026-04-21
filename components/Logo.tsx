@@ -25,10 +25,10 @@ export function Logo({
     >
       <span
         className="relative flex items-center justify-center transition-transform group-hover:scale-105"
-        style={{ width: dim * 2.5, height: dim * 2 }} 
+        style={{ width: dim * 2, height: dim * 1.5 }} 
       >
         <Image
-          src="/logo/new-logo.jpeg"
+          src="/logo/logo.jpeg"
           alt="Hayat Real Estate Investment & Development"
           fill
           className="object-contain"
