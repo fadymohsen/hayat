@@ -64,7 +64,7 @@ export default function HomePage() {
           alt="Hayat Real Estate"
           fill
           sizes="100vw"
-          className="object-cover"
+          className="object-cover blur-sm opacity-70"
           priority
         />
         {/* Dark Overlay */}
