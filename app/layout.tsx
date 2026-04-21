@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   description:
     "Hayat Saudi Investment & Real Estate Development Company — innovative real estate solutions aligned with Saudi Vision 2030.",
   icons: {
-    icon: "/logo/maad-logo.jpeg",
+    icon: "/logo/logo.jpeg",
   },
 };
 
