@@ -21,16 +21,16 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Hayat Saudi — حياة السعودية | Real Estate Development",
+  title: "Hayat Saudi — حياة السعودية | Real Estate Development & Investment | استثمار وتطوير عقاري",
   description:
-    "Hayat Saudi Investment & Real Estate Development Company — innovative real estate solutions aligned with Saudi Vision 2030.",
+    "Hayat Saudi Investment & Real Estate Development Company — innovative real estate solutions aligned with Saudi Vision 2030. | شركة حياة السعودية للاستثمار والتطوير العقاري — حلول عقارية مبتكرة تواكب رؤية المملكة ٢٠٣٠.",
   icons: {
     icon: "/logo/logo.jpeg",
   },
   openGraph: {
-    title: "Hayat Saudi — حياة السعودية | Real Estate Development",
+    title: "Hayat Saudi — حياة السعودية | Real Estate Development & Investment",
     description:
-      "Hayat Saudi Investment & Real Estate Development Company — innovative real estate solutions aligned with Saudi Vision 2030.",
+      "Innovative real estate solutions aligned with Saudi Vision 2030. | حلول عقارية مبتكرة تواكب رؤية المملكة ٢٠٣٠.",
     images: [{ url: "/logo/logo.jpeg", width: 1200, height: 630 }],
     type: "website",
   },
