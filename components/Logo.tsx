@@ -16,7 +16,7 @@ export function Logo({
 
   return (
     <Link
-      href="/"
+      href={`/${locale}`}
       className={cn("group flex items-center justify-start", className)}
       aria-label={`${t.nav.logoTitle} — Hayat`}
     >

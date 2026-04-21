@@ -13,7 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { useLanguage } from "@/components/LanguageProvider";
-import { DynamicMeta } from "@/components/DynamicMeta";
+
 
 export default function ServicesPage() {
   const { t, locale } = useLanguage();
@@ -99,7 +99,7 @@ export default function ServicesPage() {
 
   return (
     <>
-      <DynamicMeta path="/services" />
+      
       <section className="relative overflow-hidden border-b border-slate-100 bg-slate-50 py-20 dark:border-slate-800 dark:bg-slate-900 sm:py-28">
         <div className="absolute inset-0 bg-grid opacity-50" aria-hidden />
         <div className="absolute inset-0 bg-radial-gold" aria-hidden />
@@ -158,7 +158,7 @@ export default function ServicesPage() {
 
           <div className="mt-16 text-center">
             <Button asChild size="lg">
-              <Link href="/contact">
+              <Link href={`/${locale}/contact`}>
                 {t.common.requestConsultation}
                 <ArrowRight className="h-4 w-4 rtl:rotate-180" />
               </Link>

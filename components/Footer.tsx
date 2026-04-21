@@ -6,16 +6,16 @@ import { Logo } from "./Logo";
 import { useLanguage } from "./LanguageProvider";
 
 export function Footer() {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
   const year = new Date().getFullYear();
 
   const quick = [
-    { href: "/", label: t.nav.home },
-    { href: "/about", label: t.nav.about },
-    { href: "/services", label: t.nav.services },
-    { href: "/gallery", label: t.nav.gallery },
-    { href: "/faqs", label: t.nav.faqs },
-    { href: "/contact", label: t.nav.contact },
+    { href: `/${locale}`, label: t.nav.home },
+    { href: `/${locale}/about`, label: t.nav.about },
+    { href: `/${locale}/services`, label: t.nav.services },
+    { href: `/${locale}/gallery`, label: t.nav.gallery },
+    { href: `/${locale}/faqs`, label: t.nav.faqs },
+    { href: `/${locale}/contact`, label: t.nav.contact },
   ];
 
   return (

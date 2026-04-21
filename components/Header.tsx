@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, X, Globe, Instagram, Facebook, Linkedin, Mail, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -11,11 +11,12 @@ import ThemeToggle from "./ThemeToggle";
 import { cn } from "@/lib/utils";
 
 export function Header() {
-  const { t, locale, toggle } = useLanguage();
+  const { t, locale } = useLanguage();
   const pathname = usePathname();
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const isHome = pathname === "/";
+  const isHome = pathname === `/${locale}` || pathname === `/${locale}/`;
 
   useEffect(() => setOpen(false), [pathname]);
 
@@ -34,13 +35,20 @@ export function Header() {
     }
   }, [open]);
 
+  const toggleLocale = () => {
+    const otherLocale = locale === "ar" ? "en" : "ar";
+    const pathWithoutLocale = pathname.replace(/^\/(ar|en)/, "") || "/";
+    const newPath = `/${otherLocale}${pathWithoutLocale === "/" ? "" : pathWithoutLocale}`;
+    router.push(newPath);
+  };
+
   const nav = [
-    { href: "/", label: t.nav.home },
-    { href: "/about", label: t.nav.about },
-    { href: "/services", label: t.nav.services },
-    { href: "/gallery", label: t.nav.gallery },
-    { href: "/faqs", label: t.nav.faqs },
-    { href: "/contact", label: t.nav.contact },
+    { href: `/${locale}`, label: t.nav.home },
+    { href: `/${locale}/about`, label: t.nav.about },
+    { href: `/${locale}/services`, label: t.nav.services },
+    { href: `/${locale}/gallery`, label: t.nav.gallery },
+    { href: `/${locale}/faqs`, label: t.nav.faqs },
+    { href: `/${locale}/contact`, label: t.nav.contact },
   ];
 
   // On home: transparent floating pill over hero
@@ -67,9 +75,9 @@ export function Header() {
         <nav className="hidden items-center gap-0.5 lg:flex">
           {nav.map((item) => {
             const active =
-              item.href === "/"
-                ? pathname === "/"
-                : pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+              item.href === `/${locale}`
+                ? isHome
+                : pathname === item.href || pathname.startsWith(item.href + "/");
             return (
               <Link
                 key={item.href}
@@ -93,7 +101,7 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           <button
-            onClick={toggle}
+            onClick={toggleLocale}
             className={cn(
               "hidden h-9 items-center gap-1.5 rounded-full px-4 text-xs font-bold transition sm:inline-flex",
               isTransparent
@@ -141,7 +149,7 @@ export function Header() {
               <Logo />
               <div className="flex items-center gap-3">
                  <button
-                  onClick={toggle}
+                  onClick={toggleLocale}
                   className="flex h-10 items-center gap-2 rounded-full bg-slate-100 px-4 text-sm font-bold text-slate-900 transition dark:bg-slate-900 dark:text-white"
                 >
                   <Globe className="h-4 w-4" />
@@ -168,7 +176,10 @@ export function Header() {
                 className="flex flex-col gap-3"
               >
                 {nav.map((item) => {
-                  const active = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+                  const active =
+                    item.href === `/${locale}`
+                      ? isHome
+                      : pathname === item.href || pathname.startsWith(item.href + "/");
                   return (
                     <div key={item.href} className="overflow-hidden py-1">
                       <motion.div

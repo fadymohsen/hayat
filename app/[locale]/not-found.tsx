@@ -68,13 +68,13 @@ export default function NotFound() {
           className="mt-8 flex flex-wrap items-center justify-center gap-3"
         >
           <Button asChild size="lg">
-            <Link href="/">
+            <Link href={`/${locale}`}>
               <Home className="h-4 w-4" />
               {isAr ? "العودة للرئيسية" : "Back to Home"}
             </Link>
           </Button>
           <Button asChild size="lg" variant="outline" className="dark:bg-slate-900 dark:border-slate-800 dark:text-slate-200">
-            <Link href="/contact">
+            <Link href={`/${locale}/contact`}>
               {isAr ? "تواصل معنا" : "Contact Us"}
               <ArrowRight className="h-4 w-4 rtl:rotate-180" />
             </Link>
