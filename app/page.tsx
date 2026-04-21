@@ -65,7 +65,7 @@ export default function HomePage() {
           alt="Hayat Real Estate"
           fill
           sizes="100vw"
-          className="object-cover blur-sm opacity-70"
+          className="object-cover opacity-40"
           priority
         />
         {/* Dark Overlay */}
@@ -130,10 +130,10 @@ export default function HomePage() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.7 }}
-          className="absolute inset-x-0 bottom-0 z-10"
+          className="absolute inset-x-0 bottom-4 z-10 sm:bottom-6"
         >
           <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10 rtl:divide-x-reverse rounded-t-2xl bg-black/40 backdrop-blur-md border border-white/10 border-b-0">
+            <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10 rtl:divide-x-reverse rounded-2xl bg-black/40 backdrop-blur-md border border-white/10">
               {stats.map((s, i) => (
                 <div key={s.label} className="flex flex-col items-center gap-1 py-5 px-4 sm:py-6">
                   <s.icon className="h-5 w-5 text-maad-300 mb-1" />
