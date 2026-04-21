@@ -51,9 +51,6 @@ export function Partners() {
                   className="max-h-24 w-auto object-contain sm:max-h-28"
                 />
               </div>
-              <p className="text-center text-sm font-medium text-slate-600 dark:text-slate-400">
-                {locale === "ar" ? partner.nameAr : partner.name}
-              </p>
             </motion.div>
           ))}
         </div>
