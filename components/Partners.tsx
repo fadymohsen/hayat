@@ -42,7 +42,7 @@ export function Partners() {
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="group flex flex-col items-center gap-4"
             >
-              <div className="flex h-32 w-48 items-center justify-center rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-100 transition hover:shadow-lg hover:ring-maad-200 dark:bg-slate-900 dark:ring-slate-800 dark:hover:ring-maad-700 sm:h-40 sm:w-56">
+              <div className="flex h-32 w-48 items-center justify-center p-4 sm:h-40 sm:w-56">
                 <Image
                   src={partner.logo}
                   alt={locale === "ar" ? partner.nameAr : partner.name}
