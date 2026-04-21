@@ -7,16 +7,13 @@ import { useLanguage } from "./LanguageProvider";
 
 export function Logo({
   className,
-  showText = true,
-  size = "md",
+  white = false,
 }: {
   className?: string;
-  showText?: boolean;
-  size?: "sm" | "md" | "lg";
+  white?: boolean;
 }) {
   const { t, locale } = useLanguage();
-  const dim = size === "sm" ? 36 : size === "lg" ? 72 : 48;
-  
+
   return (
     <Link
       href="/"
@@ -24,8 +21,11 @@ export function Logo({
       aria-label={`${t.nav.logoTitle} — Hayat`}
     >
       <span
-        className="relative flex items-center justify-start transition-transform group-hover:scale-105 drop-shadow-sm dark:drop-shadow-md"
-        style={{ width: 150, height: 110 }} 
+        className={cn(
+          "relative flex items-center justify-start transition-transform group-hover:scale-105",
+          white ? "brightness-0 invert" : ""
+        )}
+        style={{ width: 120, height: 50 }}
       >
         <Image
           src="/logo/logo-transperent.png"
@@ -38,4 +38,3 @@ export function Logo({
     </Link>
   );
 }
-
