@@ -106,6 +106,8 @@ export function Header() {
             <Globe className="h-3.5 w-3.5" />
           </button>
 
+          <ThemeToggle />
+
           <button
             className={cn(
               "inline-flex h-9 w-9 items-center justify-center rounded-full transition lg:hidden",
