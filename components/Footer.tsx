@@ -117,7 +117,17 @@ export function Footer() {
             © {year} Hayat Saudi Investment & Real Estate Development —{" "}
             {t.footer.rights}.
           </p>
-          <p className="font-semibold text-slate-600 dark:text-white dark:text-slate-400">MAAD · معاد</p>
+          <p className="font-medium text-slate-600 dark:text-slate-400">
+            Powered by{" "}
+            <a
+              href="https://www.veliq.co/"
+              target="_blank"
+              rel="follow"
+              className="font-bold text-maad-600 transition hover:text-maad-700 dark:text-maad-400 dark:hover:text-maad-300"
+            >
+              VELIQ
+            </a>
+          </p>
         </div>
       </div>
     </footer>
