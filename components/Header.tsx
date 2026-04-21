@@ -162,7 +162,7 @@ export function Header() {
                   open: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
                   closed: { transition: { staggerChildren: 0.04, staggerDirection: -1 } }
                 }}
-                className="flex flex-col gap-6"
+                className="flex flex-col gap-3"
               >
                 {nav.map((item) => {
                   const active = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
@@ -178,7 +178,7 @@ export function Header() {
                           href={item.href}
                           onClick={() => setOpen(false)}
                           className={cn(
-                            "group flex items-center justify-between text-5xl font-black tracking-tighter transition-transform active:scale-95",
+                            "group flex items-center justify-between text-2xl font-bold tracking-tight transition-transform active:scale-95",
                             active ? "gold-text" : "text-slate-900 dark:text-white"
                           )}
                         >
@@ -186,7 +186,7 @@ export function Header() {
                           {active && (
                             <motion.span
                               layoutId="mobileActive"
-                              className="h-3 w-3 rounded-full bg-gold-gradient"
+                              className="h-2 w-2 rounded-full bg-gold-gradient"
                             />
                           )}
                         </Link>
