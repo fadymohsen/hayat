@@ -27,6 +27,17 @@ export const metadata: Metadata = {
   icons: {
     icon: "/logo/logo.jpeg",
   },
+  openGraph: {
+    title: "Hayat Saudi — حياة السعودية | Real Estate Development",
+    description:
+      "Hayat Saudi Investment & Real Estate Development Company — innovative real estate solutions aligned with Saudi Vision 2030.",
+    images: [{ url: "/logo/logo.jpeg", width: 1200, height: 630 }],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/logo/logo.jpeg"],
+  },
 };
 
 export default function RootLayout({
