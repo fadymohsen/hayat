@@ -232,7 +232,7 @@ export default function HomePage() {
                 {t.home.aboutText}
               </p>
               <div className="mt-8">
-                <Button asChild size="lg" variant="outline" className="dark:border-slate-700 dark:text-slate-200">
+                <Button asChild size="lg" className="dark:bg-maad-500 dark:text-white dark:hover:bg-maad-400">
                   <Link href={`/${locale}/about`}>
                     {t.home.aboutCta}
                     <ArrowRight className="h-4 w-4 rtl:rotate-180" />
@@ -320,7 +320,7 @@ export default function HomePage() {
       <Partners />
 
       {/* ─── CTA ─── */}
-      <section className="relative overflow-hidden bg-slate-900 py-24 dark:bg-slate-950 sm:py-32">
+      <section className="relative overflow-hidden bg-maad-600 py-24 sm:py-32">
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
@@ -328,10 +328,13 @@ export default function HomePage() {
             alt=""
             fill
             sizes="100vw"
-            className="object-cover opacity-20"
+            className="object-cover opacity-15"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/90 to-slate-900/70" />
+          <div className="absolute inset-0 bg-gradient-to-br from-maad-700/90 via-maad-600/80 to-maad-800/95" />
         </div>
+
+        {/* Decorative elements */}
+        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "radial-gradient(circle at 20% 50%, white 0%, transparent 50%), radial-gradient(circle at 80% 50%, white 0%, transparent 50%)" }} />
 
         <div className="relative mx-auto w-full max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <motion.div
@@ -343,11 +346,11 @@ export default function HomePage() {
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
               {t.home.ctaTitle}
             </h2>
-            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">
               {t.home.ctaSubtitle}
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-              <Button asChild size="lg" className="text-base px-8 shadow-lg shadow-maad-500/25">
+              <Button asChild size="lg" className="text-base px-8 bg-white text-maad-700 hover:bg-slate-100 shadow-xl shadow-black/20">
                 <Link href={`/${locale}/contact`}>
                   {t.common.requestConsultation}
                   <ArrowRight className="h-4 w-4 rtl:rotate-180" />
@@ -357,7 +360,7 @@ export default function HomePage() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="bg-transparent border-white/20 text-white hover:bg-white hover:text-slate-900"
+                className="bg-transparent border-white/40 text-white hover:bg-white hover:text-maad-700"
               >
                 <a href="tel:0114741991" dir="ltr">
                   <Phone className="h-4 w-4" />
