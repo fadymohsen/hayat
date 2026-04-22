@@ -59,7 +59,7 @@ function LogoGrid({ items, delay = 0 }: { items: typeof partners; delay?: number
           transition={{ duration: 0.4, delay: delay + i * 0.08 }}
           className="flex flex-col items-center gap-3"
         >
-          <div className="flex h-24 w-40 items-center justify-center rounded-xl bg-white p-4 shadow-sm ring-1 ring-slate-100 transition hover:shadow-lg hover:ring-maad-200 dark:bg-slate-800 dark:ring-slate-700 dark:hover:ring-maad-700 sm:h-28 sm:w-48">
+          <div className="flex h-24 w-40 items-center justify-center rounded-xl p-4 transition sm:h-28 sm:w-48">
             <Image
               src={item.logo}
               alt={locale === "ar" ? item.nameAr : item.name}
