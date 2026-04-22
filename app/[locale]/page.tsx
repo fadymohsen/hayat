@@ -14,8 +14,8 @@ import {
   CalendarCheck,
   LayoutGrid,
   Phone,
-  ChevronDown,
   MapPin,
+  ChevronDown,
   Award,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -23,6 +23,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { StatCounter } from "@/components/StatCounter";
 import { GalleryGrid, galleryItems } from "@/components/GalleryGrid";
 import { useLanguage } from "@/components/LanguageProvider";
+import { cn } from "@/lib/utils";
 import { Partners } from "@/components/Partners";
 
 export default function HomePage() {
@@ -60,113 +61,94 @@ export default function HomePage() {
 
   return (
     <>
-      {/* ─── HERO ─── */}
-      <section className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
-        {/* Ken Burns Background */}
-        <div className="absolute inset-0 animate-kenburns">
-          <Image
-            src="/hero-bg.jpg"
-            alt="Hayat Real Estate"
-            fill
-            sizes="100vw"
-            className="object-cover"
-            priority
-          />
-        </div>
-
-        {/* Cinematic Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80" />
-
-        {/* Side Accent Line */}
-        <div className="absolute start-8 top-1/4 bottom-1/4 w-px bg-gradient-to-b from-transparent via-maad-400/50 to-transparent hidden lg:block" />
+      
+      {/* 100vh VIDEO HERO */}
+      <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        
+        {/* Video Background */}
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+          poster="/hero-poster.png"
+          className="absolute inset-0 h-full w-full object-cover"
+        >
+          <source src="/hero/Cinematic_Riyadh_Real_Estate_Promo.mp4" type="video/mp4" />
+        </video>
+        
+        {/* Dark Overlay for Contrast */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/60 to-slate-950/90" />
 
         {/* Hero Content */}
-        <div className="relative z-10 mx-auto w-full max-w-6xl px-4 pt-28 pb-40 text-center sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-2 text-sm font-medium text-white/90 backdrop-blur-md"
-          >
-            <MapPin className="h-3.5 w-3.5 text-maad-300" />
-            {locale === "ar" ? "الرياض، المملكة العربية السعودية" : "Riyadh, Kingdom of Saudi Arabia"}
-          </motion.div>
-
+        <div className="relative z-10 mx-auto w-full max-w-4xl px-4 text-center sm:px-6 lg:px-8 pt-16">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.25 }}
-            className="text-5xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl"
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl"
           >
-            {t.home.heroTitle}
+            {locale === "ar" ? (
+              <span className="flex flex-col gap-2 sm:gap-4">
+                <span>نبني الغد،</span>
+                <span className="text-transparent bg-clip-text bg-gold-gradient py-2">لكل الأجيال.</span>
+              </span>
+            ) : (
+              <span className="flex flex-col gap-2 sm:gap-4">
+                <span>Building Tomorrow,</span>
+                <span className="text-transparent bg-clip-text bg-gold-gradient py-2">For Every Generation.</span>
+              </span>
+            )}
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.45 }}
-            className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/75 sm:text-lg md:text-xl"
+            transition={{ duration: 0.7, delay: 0.35 }}
+            className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg md:text-xl"
           >
-            {t.home.heroSubtitle}
+            {locale === "ar" 
+              ? "رؤية تستشرف المستقبل، ومساحات مصممة بعناية لتناسب جميع الأعمار. بيئة عقارية راقية تندمج مع احتياجات العائلة بالكامل لبناء حياة سعيدة ومستدامة."
+              : "Visionary planning predicting optimal futures. Spaces tailored for all generations—providing a premium real estate environment embracing the entire family for a happy, sustainable life."}
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.6 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
             className="mt-10 flex flex-wrap items-center justify-center gap-4"
           >
-            <Button asChild size="lg" className="text-base px-8 py-3 shadow-lg shadow-maad-500/25">
-              <Link href={`/${locale}/gallery`}>
-                {t.common.exploreGallery}
-                <ArrowRight className="h-4 w-4 rtl:rotate-180" />
-              </Link>
-            </Button>
             <Button
               asChild
               size="lg"
-              variant="outline"
-              className="text-base px-8 py-3 border-white/20 bg-white/5 text-white backdrop-blur-sm hover:bg-white hover:text-slate-900"
+              className="text-base px-10 py-4 bg-maad-600 hover:bg-maad-700 text-white shadow-xl shadow-maad-500/20 rounded-full"
             >
               <Link href={`/${locale}/contact`}>{t.common.getInTouch}</Link>
             </Button>
           </motion.div>
         </div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
-        >
-          <span className="text-xs font-medium uppercase tracking-widest text-white/50">
-            {t.home.scrollDown}
-          </span>
-          <ChevronDown className="h-5 w-5 text-white/50 animate-scroll-bounce" />
-        </motion.div>
       </section>
 
-      {/* ─── STATS BAR ─── */}
-      <section className="relative z-20 -mt-16">
+      {/* STATS BAR */}
+      <section className="relative z-20 bg-white py-12 dark:bg-slate-950">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-slate-200 shadow-2xl dark:bg-slate-700 sm:grid-cols-4"
+            className="grid grid-cols-2 gap-px overflow-hidden rounded-3xl bg-slate-200 shadow-2xl dark:bg-slate-800 sm:grid-cols-4"
           >
             {stats.map((stat, i) => (
               <div
                 key={stat.label}
-                className="flex flex-col items-center justify-center bg-white px-6 py-8 dark:bg-slate-900 sm:py-10"
+                className="flex flex-col items-center justify-center bg-slate-900 px-6 py-10 sm:py-14"
               >
-                <stat.icon className="mb-3 h-6 w-6 text-maad-500" />
-                <span className="text-3xl font-bold text-slate-900 dark:text-white sm:text-4xl">
+                <stat.icon className="mb-4 h-8 w-8 text-maad-400" />
+                <span className="text-4xl font-black text-transparent bg-clip-text bg-gold-gradient sm:text-5xl">
                   <StatCounter to={stat.value} suffix={stat.suffix} />
                 </span>
-                <span className="mt-1 text-sm font-medium text-slate-500 dark:text-slate-400">
+                <span className="mt-2 text-xs font-bold uppercase tracking-widest text-slate-400">
                   {stat.label}
                 </span>
               </div>
@@ -175,13 +157,101 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── ABOUT PREVIEW ─── */}
+      {/* ACTIVE DEVELOPMENT: HAYAT TOWER */}
+      <section className="relative overflow-hidden bg-slate-50 py-20 dark:bg-slate-900/50 sm:py-28">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-24">
+            
+            {/* Left Column: Text */}
+            <div className="flex-1 w-full max-w-2xl lg:max-w-none">
+              <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl md:text-5xl">
+                <span className="block text-maad-600 dark:text-maad-500 mb-2 font-medium text-lg md:text-xl tracking-wider uppercase">
+                  {locale === "ar" ? "تطوير نشط" : "Active Development"}
+                </span>
+                {locale === "ar" ? "برج الحياة" : "Hayat Tower"}
+              </h2>
+              <p className="mt-6 text-base leading-relaxed text-slate-600 dark:text-slate-400 sm:text-lg">
+                {locale === "ar" 
+                  ? "يجسد برج الحياة التزامنا بالتميز. مشروع قيد الإنشاء حالياً، مصمم بأحدث المعايير الهندسية ليكون أيقونة معمارية تجمع بين الفخامة والعملية، ويخدم تطلعات المستقبل في قلب العاصمة."
+                  : "Hayat Tower embodies our commitment to excellence. Currently under construction, this project is designed with the latest engineering standards to be an architectural icon combining luxury and practicality, serving future aspirations in the heart of the capital."}
+              </p>
+              
+              <ul className="mt-8 space-y-4">
+                {[
+                  locale === "ar" ? "هندسة معمارية حديثة ومستدامة" : "Modern and sustainable architecture",
+                  locale === "ar" ? "مرافق متكاملة تخدم كافة أفراد الأسرة" : "Integrated facilities serving all family members",
+                  locale === "ar" ? "موقع استراتيجي وحيوي" : "Strategic and dynamic location"
+                ].map((feature, idx) => (
+                  <li key={idx} className="flex items-center gap-3 text-slate-700 dark:text-slate-300">
+                    <div className="flex shrink-0 h-6 w-6 items-center justify-center rounded-full bg-maad-100 text-maad-600 dark:bg-maad-900/50 dark:text-maad-400">
+                      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Right Column: Tower Image */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+              className="relative shrink-0 mx-auto w-full max-w-sm lg:mx-0"
+            >
+              <div className="relative w-full aspect-[3/4] rounded-[2rem] overflow-hidden shadow-2xl ring-1 ring-slate-200 dark:ring-slate-800">
+                <Image
+                  src="/hero/hayat-tower.jpeg"
+                  alt="Hayat Tower active construction"
+                  fill
+                  className="object-cover transition-transform duration-700 hover:scale-105"
+                />
+              </div>
+              
+              {/* Floating Decorative element */}
+              <div className="absolute -z-10 -bottom-10 -right-10 h-[200px] w-[200px] rounded-full bg-maad-500/20 blur-3xl dark:bg-maad-600/20" />
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ABOUT PREVIEW */}
       <section className="relative bg-white py-24 dark:bg-slate-950 sm:py-32">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-            {/* Image Side */}
+            {/* Text Side */}
             <motion.div
               initial={{ opacity: 0, x: locale === "ar" ? 40 : -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7 }}
+            >
+              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.15em] text-maad-500">
+                {locale === "ar" ? "من نحن" : "Who We Are"}
+              </p>
+              <h2 className="text-3xl font-bold leading-tight tracking-tight text-slate-900 dark:text-white sm:text-4xl md:text-5xl">
+                {t.home.aboutTitle}
+              </h2>
+              <p className="mt-6 text-base leading-relaxed text-slate-600 dark:text-slate-400 sm:text-lg">
+                {t.home.aboutText}
+              </p>
+              <div className="mt-8">
+                <Button asChild size="lg" className="dark:bg-maad-500 dark:text-white dark:hover:bg-maad-400">
+                  <Link href={`/${locale}/about`}>
+                    {t.home.aboutCta}
+                    <ArrowRight className="h-4 w-4 rtl:rotate-180" />
+                  </Link>
+                </Button>
+              </div>
+            </motion.div>
+
+            {/* Image Side */}
+            <motion.div
+              initial={{ opacity: 0, x: locale === "ar" ? -40 : 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.7 }}
@@ -214,37 +284,11 @@ export default function HomePage() {
                 </div>
               </motion.div>
             </motion.div>
-
-            {/* Text Side */}
-            <motion.div
-              initial={{ opacity: 0, x: locale === "ar" ? -40 : 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.7 }}
-            >
-              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.15em] text-maad-500">
-                {locale === "ar" ? "من نحن" : "Who We Are"}
-              </p>
-              <h2 className="text-3xl font-bold leading-tight tracking-tight text-slate-900 dark:text-white sm:text-4xl md:text-5xl">
-                {t.home.aboutTitle}
-              </h2>
-              <p className="mt-6 text-base leading-relaxed text-slate-600 dark:text-slate-400 sm:text-lg">
-                {t.home.aboutText}
-              </p>
-              <div className="mt-8">
-                <Button asChild size="lg" className="dark:bg-maad-500 dark:text-white dark:hover:bg-maad-400">
-                  <Link href={`/${locale}/about`}>
-                    {t.home.aboutCta}
-                    <ArrowRight className="h-4 w-4 rtl:rotate-180" />
-                  </Link>
-                </Button>
-              </div>
-            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ─── SERVICES ─── */}
+      {/* SERVICES */}
       <section className="relative bg-slate-50 py-24 dark:bg-slate-900/50 sm:py-32">
         <div className="absolute inset-0 bg-grid" />
         <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -284,7 +328,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── FEATURED PROJECTS ─── */}
+      {/* FEATURED PROJECTS */}
       <section className="relative bg-white py-24 dark:bg-slate-950 sm:py-32">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-between gap-6 md:flex-row md:items-end md:text-start">
@@ -316,7 +360,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── PARTNERS ─── */}
+      {/* PARTNERS */}
       <Partners />
 
     </>

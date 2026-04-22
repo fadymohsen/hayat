@@ -1,129 +1,116 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { useLanguage } from "@/components/LanguageProvider";
-
-const partners = [
-  {
-    name: "Saudi Al-Terais Trading & Industrial Contracting Co. Ltd",
-    nameAr: "شركة الطريس السعودية للتجارة والمقاولات الصناعية المحدودة",
-    logo: "/partners/al-terais.png",
-  },
-  {
-    name: "JAL Development Co. Ltd",
-    nameAr: "شركة جال التنمية",
-    logo: "/partners/jal.png",
-  },
-];
+import { cn } from "@/lib/utils";
 
 const clients = [
   {
-    name: "UNIMAC",
-    nameAr: "يونيماك",
-    logo: "/clients/client-1.jpeg",
+    name: "Client 1",
+    logo: "/clients/Gemini_Generated_Image_bn843sbn843sbn84-removebg-preview.png",
   },
   {
-    name: "MSC",
-    nameAr: "MSC",
-    logo: "/clients/client-2.jpeg",
+    name: "Client 2",
+    logo: "/clients/Gemini_Generated_Image_hed5t4hed5t4hed5-removebg-preview.png",
   },
   {
-    name: "Alshaya Enterprises",
-    nameAr: "الشايع للمشاريع",
-    logo: "/clients/client-3.jpeg",
+    name: "Client 3",
+    logo: "/clients/Gemini_Generated_Image_wvoysiwvoysiwvoy-removebg-preview.png",
   },
   {
-    name: "The Coffee Address",
-    nameAr: "عنوان القهوة",
-    logo: "/clients/client-4.jpeg",
+    name: "Client 4",
+    logo: "/clients/Gemini_Generated_Image_9ega9u9ega9u9ega-removebg-preview.png",
   },
   {
-    name: "Gloria & Mourouj Gloria Hotels & Resorts",
-    nameAr: "فنادق ومنتجعات غلوريا والمروج غلوريا",
-    logo: "/clients/client-5.jpeg",
+    name: "Client 5",
+    logo: "/clients/Gemini_Generated_Image_tf6vurtf6vurtf6v-removebg-preview.png",
   },
 ];
-
-function LogoGrid({ items, delay = 0 }: { items: typeof partners; delay?: number }) {
-  const { locale } = useLanguage();
-
-  return (
-    <div className="mt-12 flex flex-wrap items-center justify-center gap-6 sm:gap-8">
-      {items.map((item, i) => (
-        <motion.div
-          key={item.name}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.4, delay: delay + i * 0.08 }}
-          className="flex flex-col items-center gap-3"
-        >
-          <div className="flex h-24 w-40 items-center justify-center rounded-xl p-4 transition sm:h-28 sm:w-48">
-            <Image
-              src={item.logo}
-              alt={locale === "ar" ? item.nameAr : item.name}
-              width={150}
-              height={90}
-              className="max-h-16 w-auto object-contain grayscale transition hover:grayscale-0 sm:max-h-20"
-            />
-          </div>
-        </motion.div>
-      ))}
-    </div>
-  );
-}
 
 export function Partners() {
   const { locale } = useLanguage();
 
   return (
-    <>
-      {/* ─── CLIENTS ─── */}
-      <section className="relative bg-white py-20 dark:bg-slate-950 sm:py-24">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-center"
-          >
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.15em] text-maad-500">
-              {locale === "ar" ? "عملاؤنا" : "Our Clients"}
-            </p>
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
-              {locale === "ar"
-                ? "ثقة عملائنا هي أعظم إنجازاتنا"
-                : "Our Clients' Trust Is Our Greatest Achievement"}
-            </h2>
-          </motion.div>
-          <LogoGrid items={clients} />
+    <section className="bg-slate-50 py-24 dark:bg-slate-950 sm:py-32 overflow-hidden border-t border-slate-100 dark:border-slate-900">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-20 text-center">
+          <p className="mb-4 text-sm font-bold uppercase tracking-[0.25em] text-maad-600 dark:text-maad-500">
+            {locale === "ar" ? "عملائنا الكرام" : "Valued Clients"}
+          </p>
+          <h2 className="text-4xl font-black tracking-tight text-slate-900 dark:text-white sm:text-6xl">
+            {locale === "ar"
+              ? "نعتز بثقتهم"
+              : "Partners in Success"}
+          </h2>
         </div>
-      </section>
 
-      {/* ─── PARTNERS ─── */}
-      <section className="relative bg-slate-50 py-20 dark:bg-slate-900/50 sm:py-24">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-center"
-          >
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.15em] text-maad-500">
-              {locale === "ar" ? "شركاؤنا" : "Our Partners"}
-            </p>
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
-              {locale === "ar"
-                ? "نفخر بالتعاون مع نخبة من الشركات الرائدة"
-                : "Proud to Collaborate with Industry Leaders"}
-            </h2>
-          </motion.div>
-          <LogoGrid items={partners} delay={0.2} />
+        {/* ULTRA-SMOOTH CONTINUOUS MARQUEE (NO-JS DEPENDENCY) */}
+        <div className="group relative flex overflow-hidden py-10">
+          {/* Left/Right Fades for premium feel */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-slate-50 to-transparent dark:from-slate-950 sm:w-48" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-slate-50 to-transparent dark:from-slate-950 sm:w-48" />
+
+          {/* Marquee Wrapper */}
+          <div className="flex w-fit animate-marquee whitespace-nowrap group-hover:[animation-play-state:paused]">
+            {/* 
+              We use 4 sets to ensure perfect continuity even on ultra-wide screens.
+              The animation moves from 0 to -25% (since we have 4 sets) 
+              Wait, simpler: 2 sets and -50%.
+            */}
+            {[...clients, ...clients, ...clients, ...clients].map((item, i) => (
+              <div 
+                key={i} 
+                className="mx-8 flex shrink-0 items-center justify-center w-[160px] sm:w-[220px] transition-all duration-500 hover:scale-110"
+              >
+                <Image
+                  src={item.logo}
+                  alt={item.name}
+                  width={220}
+                  height={110}
+                  priority
+                  className="max-h-16 w-auto object-contain sm:max-h-24"
+                />
+              </div>
+            ))}
+          </div>
+          
+          {/* Duplicate set for seamless looping */}
+          <div className="flex w-fit animate-marquee whitespace-nowrap group-hover:[animation-play-state:paused]" aria-hidden="true">
+            {[...clients, ...clients, ...clients, ...clients].map((item, i) => (
+              <div 
+                key={`dup-${i}`} 
+                className="mx-8 flex shrink-0 items-center justify-center w-[160px] sm:w-[220px] grayscale opacity-50 transition-all duration-500 hover:grayscale-0 hover:opacity-100 hover:scale-110"
+              >
+                <Image
+                  src={item.logo}
+                  alt={item.name}
+                  width={220}
+                  height={110}
+                  priority
+                  className="max-h-16 w-auto object-contain sm:max-h-24"
+                />
+              </div>
+            ))}
+          </div>
         </div>
-      </section>
-    </>
+      </div>
+
+      <style jsx global>{`
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-100%); }
+        }
+        .animate-marquee {
+          animation: marquee 50s linear infinite;
+        }
+        [dir="rtl"] .animate-marquee {
+          animation: marquee-rtl 50s linear infinite;
+        }
+        @keyframes marquee-rtl {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(100%); }
+        }
+      `}</style>
+    </section>
   );
 }

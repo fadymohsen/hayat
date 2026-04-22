@@ -14,16 +14,16 @@ const config: Config = {
       },
       colors: {
         maad: {
-          50: "#F5F5EC",
-          100: "#EAEAD3",
-          200: "#D4D4A8",
-          300: "#BABA7D",
-          400: "#A2A25A",
-          500: "#8B8B3E",
-          600: "#747432",
-          700: "#5D5D28",
-          800: "#46461E",
-          900: "#2F2F14",
+          50: "#fbf9f2",
+          100: "#f5f0de",
+          200: "#eadbb6",
+          300: "#e0c58a",
+          400: "#d6b05d",
+          500: "#c79a31",
+          600: "#b08325",
+          700: "#8e671d",
+          800: "#72511a",
+          900: "#5f4218",
         },
       },
       keyframes: {
@@ -47,9 +47,9 @@ const config: Config = {
       },
       backgroundImage: {
         "gold-gradient":
-          "linear-gradient(120deg, #8B8B3E 0%, #BABA7D 50%, #8B8B3E 100%)",
+          "linear-gradient(120deg, #b08325 0%, #e0c58a 50%, #c79a31 100%)",
         "gold-shimmer":
-          "linear-gradient(90deg, transparent, rgba(139,139,62,0.25), transparent)",
+          "linear-gradient(90deg, transparent, rgba(199,154,49,0.25), transparent)",
       },
     },
   },

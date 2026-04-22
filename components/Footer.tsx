@@ -33,10 +33,7 @@ export function Footer() {
                 <ShieldCheck className="h-3.5 w-3.5 text-maad-500" />
                 {t.footer.iso}
               </span>
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 dark:text-white ring-1 ring-slate-200 dark:bg-slate-900 dark:text-slate-300 dark:ring-slate-800">
-                <BadgeCheck className="h-3.5 w-3.5 text-maad-500" />
-                {t.footer.vision}
-              </span>
+
             </div>
           </div>
 
