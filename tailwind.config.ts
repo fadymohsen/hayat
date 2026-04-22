@@ -39,11 +39,21 @@ const config: Config = {
           "0%": { backgroundPosition: "-400px 0" },
           "100%": { backgroundPosition: "400px 0" },
         },
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+        "marquee-rtl": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(50%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.22s ease-out",
         "accordion-up": "accordion-up 0.22s ease-out",
         shimmer: "shimmer 2.4s linear infinite",
+        marquee: "marquee 40s linear infinite",
+        "marquee-rtl": "marquee-rtl 40s linear infinite",
       },
       backgroundImage: {
         "gold-gradient":

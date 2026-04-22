@@ -130,25 +130,27 @@ export default function HomePage() {
       </section>
 
       {/* STATS BAR */}
-      <section className="relative z-20 bg-white py-12 dark:bg-slate-950">
+      <section className="relative z-20 bg-white py-16 dark:bg-slate-950 sm:py-24">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="grid grid-cols-2 gap-px overflow-hidden rounded-3xl bg-slate-200 shadow-2xl dark:bg-slate-800 sm:grid-cols-4"
+            className="grid grid-cols-1 gap-px overflow-hidden rounded-[2.5rem] bg-slate-200 shadow-2xl dark:bg-slate-800 sm:grid-cols-2 lg:grid-cols-4 ring-1 ring-slate-200 dark:ring-white/10"
           >
             {stats.map((stat, i) => (
               <div
                 key={stat.label}
-                className="flex flex-col items-center justify-center bg-slate-900 px-6 py-10 sm:py-14"
+                className="flex flex-col items-center justify-center bg-slate-50 px-6 py-12 dark:bg-slate-900 sm:py-16 transition-all duration-300 hover:bg-white dark:hover:bg-slate-800/40 group"
               >
-                <stat.icon className="mb-4 h-8 w-8 text-maad-400" />
-                <span className="text-4xl font-black text-transparent bg-clip-text bg-gold-gradient sm:text-5xl">
+                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-maad-50 text-maad-600 transition-transform dark:bg-white/5 dark:text-maad-400 group-hover:scale-110 group-hover:rotate-3">
+                  <stat.icon className="h-8 w-8" />
+                </div>
+                <span className="text-5xl font-black text-transparent bg-clip-text bg-gold-gradient sm:text-6xl">
                   <StatCounter to={stat.value} suffix={stat.suffix} />
                 </span>
-                <span className="mt-2 text-xs font-bold uppercase tracking-widest text-slate-400">
+                <span className="mt-4 text-center text-xs font-bold uppercase tracking-[0.25em] text-slate-500 dark:text-slate-400">
                   {stat.label}
                 </span>
               </div>
@@ -343,12 +345,6 @@ export default function HomePage() {
                 {t.home.gallerySubtitle}
               </p>
             </div>
-            <Button asChild variant="outline" size="lg" className="shrink-0 dark:bg-slate-900 dark:border-slate-800 dark:text-slate-200">
-              <Link href={`/${locale}/gallery`}>
-                {t.common.viewAll}
-                <ArrowRight className="h-4 w-4 rtl:rotate-180" />
-              </Link>
-            </Button>
           </div>
 
           <div className="mt-14">
@@ -356,6 +352,28 @@ export default function HomePage() {
               items={galleryItems.slice(0, 6)}
               locale={locale}
             />
+          </div>
+
+          <div className="mt-16 flex justify-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <Button 
+                asChild 
+                size="lg" 
+                className="group relative h-14 px-12 rounded-full bg-slate-900 text-white hover:bg-maad-600 transition-all duration-300 shadow-xl hover:shadow-maad-500/20 dark:bg-white dark:text-slate-900 dark:hover:bg-maad-500 dark:hover:text-white"
+              >
+                <Link href={`/${locale}/gallery`}>
+                  <span className="relative z-10 flex items-center gap-2 text-base font-bold">
+                    {t.common.viewAll}
+                    <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" />
+                  </span>
+                </Link>
+              </Button>
+            </motion.div>
           </div>
         </div>
       </section>
