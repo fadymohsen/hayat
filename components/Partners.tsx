@@ -19,24 +19,29 @@ const partners = [
 
 const clients = [
   {
+    name: "UNIMAC",
+    nameAr: "يونيماك",
+    logo: "/clients/client-1.jpeg",
+  },
+  {
     name: "MSC",
     nameAr: "MSC",
-    logo: "/clients/msc.png",
+    logo: "/clients/client-2.jpeg",
   },
   {
     name: "Alshaya Enterprises",
     nameAr: "الشايع للمشاريع",
-    logo: "/clients/alshaya.png",
+    logo: "/clients/client-3.jpeg",
   },
   {
     name: "The Coffee Address",
     nameAr: "عنوان القهوة",
-    logo: "/clients/coffee-address.png",
+    logo: "/clients/client-4.jpeg",
   },
   {
     name: "Gloria & Mourouj Gloria Hotels & Resorts",
     nameAr: "فنادق ومنتجعات غلوريا والمروج غلوريا",
-    logo: "/clients/gloria.png",
+    logo: "/clients/client-5.jpeg",
   },
 ];
 
@@ -63,9 +68,6 @@ function LogoGrid({ items, delay = 0 }: { items: typeof partners; delay?: number
               className="max-h-16 w-auto object-contain grayscale transition hover:grayscale-0 sm:max-h-20"
             />
           </div>
-          <p className="max-w-[10rem] text-center text-xs font-medium text-slate-500 dark:text-slate-400">
-            {locale === "ar" ? item.nameAr : item.name}
-          </p>
         </motion.div>
       ))}
     </div>
