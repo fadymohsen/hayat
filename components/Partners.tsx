@@ -17,14 +17,36 @@ const partners = [
   },
 ];
 
+const clients = [
+  {
+    name: "MSC",
+    nameAr: "MSC",
+    logo: "/clients/msc.png",
+  },
+  {
+    name: "Alshaya Enterprises",
+    nameAr: "الشايع للمشاريع",
+    logo: "/clients/alshaya.png",
+  },
+  {
+    name: "The Coffee Address",
+    nameAr: "عنوان القهوة",
+    logo: "/clients/coffee-address.png",
+  },
+  {
+    name: "Gloria & Mourouj Gloria Hotels & Resorts",
+    nameAr: "فنادق ومنتجعات غلوريا والمروج غلوريا",
+    logo: "/clients/gloria.png",
+  },
+];
+
 export function Partners() {
   const { locale } = useLanguage();
 
-  // Duplicate for seamless marquee effect
-  const marqueeItems = [...partners, ...partners, ...partners, ...partners];
+  const allLogos = [...partners, ...clients];
 
   return (
-    <section className="relative overflow-hidden bg-slate-50 py-20 dark:bg-slate-900/50 sm:py-24">
+    <section className="relative bg-slate-50 py-20 dark:bg-slate-900/50 sm:py-24">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -34,7 +56,7 @@ export function Partners() {
           className="text-center"
         >
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.15em] text-maad-500">
-            {locale === "ar" ? "شركاؤنا" : "Our Partners"}
+            {locale === "ar" ? "شركاؤنا وعملاؤنا" : "Our Partners & Clients"}
           </p>
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
             {locale === "ar"
@@ -42,33 +64,31 @@ export function Partners() {
               : "Proud to Collaborate with Industry Leaders"}
           </h2>
         </motion.div>
-      </div>
 
-      {/* Marquee */}
-      <div className="relative mt-14">
-        {/* Fade edges */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 sm:w-40" style={{ background: "linear-gradient(to right, rgb(248 250 252), transparent)" }} />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 sm:w-40" style={{ background: "linear-gradient(to left, rgb(248 250 252), transparent)" }} />
-
-        <div className="flex animate-marquee w-max gap-16 px-8">
-          {marqueeItems.map((partner, i) => (
-            <div
-              key={`${partner.name}-${i}`}
-              className="flex flex-col items-center gap-3 px-4"
+        {/* Logo Grid */}
+        <div className="mt-14 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
+          {allLogos.map((item, i) => (
+            <motion.div
+              key={item.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.4, delay: i * 0.08 }}
+              className="flex flex-col items-center gap-3"
             >
-              <div className="flex h-28 w-44 items-center justify-center rounded-xl bg-white p-4 shadow-sm ring-1 ring-slate-100 transition hover:shadow-md dark:bg-slate-800 dark:ring-slate-700 sm:h-32 sm:w-52">
+              <div className="flex h-28 w-full items-center justify-center rounded-xl bg-white p-5 shadow-sm ring-1 ring-slate-100 transition hover:shadow-lg hover:ring-maad-200 dark:bg-slate-800 dark:ring-slate-700 dark:hover:ring-maad-700 sm:h-32">
                 <Image
-                  src={partner.logo}
-                  alt={locale === "ar" ? partner.nameAr : partner.name}
+                  src={item.logo}
+                  alt={locale === "ar" ? item.nameAr : item.name}
                   width={160}
                   height={100}
                   className="max-h-20 w-auto object-contain grayscale transition hover:grayscale-0 sm:max-h-24"
                 />
               </div>
-              <p className="text-xs font-medium text-slate-500 dark:text-slate-400">
-                {locale === "ar" ? partner.nameAr : partner.name}
+              <p className="text-center text-xs font-medium text-slate-500 dark:text-slate-400">
+                {locale === "ar" ? item.nameAr : item.name}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
