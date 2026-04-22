@@ -319,58 +319,6 @@ export default function HomePage() {
       {/* ─── PARTNERS ─── */}
       <Partners />
 
-      {/* ─── CTA ─── */}
-      <section className="relative overflow-hidden bg-maad-600 py-24 sm:py-32">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <Image
-            src="/projects/project-7.jpeg"
-            alt=""
-            fill
-            sizes="100vw"
-            className="object-cover opacity-15"
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-maad-700/90 via-maad-600/80 to-maad-800/95" />
-        </div>
-
-        {/* Decorative elements */}
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "radial-gradient(circle at 20% 50%, white 0%, transparent 50%), radial-gradient(circle at 80% 50%, white 0%, transparent 50%)" }} />
-
-        <div className="relative mx-auto w-full max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-          >
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
-              {t.home.ctaTitle}
-            </h2>
-            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">
-              {t.home.ctaSubtitle}
-            </p>
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-              <Button asChild size="lg" className="text-base px-8 bg-white text-maad-700 hover:bg-slate-100 shadow-xl shadow-black/20">
-                <Link href={`/${locale}/contact`}>
-                  {t.common.requestConsultation}
-                  <ArrowRight className="h-4 w-4 rtl:rotate-180" />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="bg-transparent border-white/40 text-white hover:bg-white hover:text-maad-700"
-              >
-                <a href="tel:0114741991" dir="ltr">
-                  <Phone className="h-4 w-4" />
-                  0114741991
-                </a>
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
     </>
   );
 }
