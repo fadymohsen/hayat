@@ -24,8 +24,12 @@ export type Dictionary = {
     heroEyebrow: string;
     heroTitle: string;
     heroSubtitle: string;
+    scrollDown: string;
     statsTitle: string;
     statsSubtitle: string;
+    aboutTitle: string;
+    aboutText: string;
+    aboutCta: string;
     servicesTitle: string;
     servicesSubtitle: string;
     galleryTitle: string;
@@ -117,11 +121,15 @@ export const dictionary: Record<Locale, Dictionary> = {
     },
     home: {
       heroEyebrow: "حياة السعودية للاستثمار والتطوير العقاري",
-      heroTitle: "حلول عقارية مبتكرة تلبي تطلعاتك",
+      heroTitle: "نبني حياة أجمل",
       heroSubtitle:
         "شركة رائدة في تطوير المشاريع السكنية والتجارية والاستثمارية، تجمع بين خبرة تزيد عن ١١ عامًا وجودة عالمية تواكب رؤية المملكة ٢٠٣٠.",
+      scrollDown: "اكتشف المزيد",
       statsTitle: "أرقام تتحدث عن خبرتنا",
       statsSubtitle: "إنجازات ملموسة راكمتها حياة السعودية على مر السنين.",
+      aboutTitle: "نصنع بيئات عمرانية ملهمة",
+      aboutText: "منذ أكثر من ١١ عامًا ونحن نعمل على إثراء المشهد العمراني في المملكة العربية السعودية بمشاريع ترفع معايير الجودة وتلبّي تطلعات عملائنا، بخبرة متراكمة وشغف لا يتوقف.",
+      aboutCta: "تعرّف علينا أكثر",
       servicesTitle: "خدماتنا الأساسية",
       servicesSubtitle:
         "نقدم منظومة متكاملة من الخدمات العقارية التي تغطي دورة حياة المشروع من الفكرة إلى التسليم.",
@@ -282,12 +290,16 @@ export const dictionary: Record<Locale, Dictionary> = {
     },
     home: {
       heroEyebrow: "Hayat Saudi Investment & Real Estate Development",
-      heroTitle: "Innovative Real Estate Solutions Fulfilling Your Aspirations",
+      heroTitle: "Building a Beautiful Life",
       heroSubtitle:
         "A leading Saudi developer shaping residential, commercial, and investment projects with over 11 years of expertise and world-class quality aligned with Vision 2030.",
+      scrollDown: "Discover More",
       statsTitle: "Numbers That Speak for Our Expertise",
       statsSubtitle:
         "A track record of tangible achievements accumulated over the years.",
+      aboutTitle: "Shaping Inspiring Urban Environments",
+      aboutText: "For over 11 years, we have been enriching the Kingdom's urban landscape with projects that raise the bar for quality and meet our clients' aspirations — driven by accumulated expertise and relentless passion.",
+      aboutCta: "Learn More About Us",
       servicesTitle: "Core Services",
       servicesSubtitle:
         "An integrated suite of real estate services covering the full project lifecycle — from concept to handover.",
