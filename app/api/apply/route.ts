@@ -11,9 +11,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "All fields are required" }, { status: 400 });
     }
 
-    await resend.emails.send({
-      from: "Hayat Careers <Info@saudihayat.com>",
+    const { data, error: sendError } = await resend.emails.send({
+      from: "Hayat Careers <onboarding@resend.dev>",
       to: "Info@saudihayat.com",
+      replyTo: email,
       subject: `New Job Application: ${jobTitle}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; direction: rtl;">
@@ -40,7 +41,12 @@ export async function POST(req: NextRequest) {
       `,
     });
 
-    return NextResponse.json({ success: true });
+    if (sendError) {
+      console.error("Resend error:", sendError);
+      return NextResponse.json({ error: "Failed to send", details: sendError.message }, { status: 500 });
+    }
+
+    return NextResponse.json({ success: true, id: data?.id });
   } catch (error) {
     console.error("Apply error:", error);
     return NextResponse.json({ error: "Failed to send application" }, { status: 500 });
