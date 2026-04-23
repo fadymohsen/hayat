@@ -297,7 +297,7 @@ export function AdminDashboard() {
                 <div className="lg:col-span-5">
                   <div className="sticky top-10">
                     <div className="rounded-[2.5rem] bg-white p-8 shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-slate-100 dark:bg-slate-900 dark:border-slate-800">
-                      <h3 className="text-xl font-bold flex items-center gap-3 mb-8">
+                      <h3 className="text-xl font-bold flex items-center gap-3 mb-8 text-slate-900 dark:text-white">
                         <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-maad-50 text-maad-600">
                           {editingId ? <Check className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
                         </span>
@@ -357,7 +357,7 @@ export function AdminDashboard() {
                 <div className="lg:col-span-5">
                   <div className="sticky top-10">
                     <div className="rounded-[2.5rem] bg-white p-8 shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-slate-100 dark:bg-slate-900 dark:border-slate-800">
-                      <h3 className="text-xl font-bold flex items-center gap-3 mb-8">
+                      <h3 className="text-xl font-bold flex items-center gap-3 mb-8 text-slate-900 dark:text-white">
                         <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-maad-50 text-maad-600">
                           {editingId ? <Check className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
                         </span>
@@ -393,10 +393,10 @@ export function AdminDashboard() {
                     <article key={j.id} className="group flex items-center justify-between rounded-[2rem] border border-slate-100 bg-white p-8 shadow-sm hover:shadow-lg dark:bg-slate-900 dark:border-slate-800">
                       <div className="text-right">
                         <div className="flex items-center gap-4 justify-end">
-                          <span className="rounded-full bg-slate-50 px-4 py-1 text-[10px] font-bold uppercase tracking-widest text-slate-500 order-2">{j.type_ar}</span>
-                          <h4 className="font-bold text-xl text-slate-900 order-1">{j.title_ar}</h4>
+                          <span className="rounded-full bg-slate-50 dark:bg-slate-800 px-4 py-1 text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-300 order-2">{j.type_ar}</span>
+                          <h4 className="font-bold text-xl text-slate-900 dark:text-white order-1">{j.title_ar}</h4>
                         </div>
-                        <p className="mt-2 text-sm text-slate-500 font-medium">{j.department_ar} • {j.location_ar}</p>
+                        <p className="mt-2 text-sm text-slate-500 dark:text-slate-300 font-medium">{j.department_ar} • {j.location_ar}</p>
                       </div>
                       <div className="flex items-center gap-2">
                         <Button variant="ghost" size="icon" className="h-10 w-10 rounded-full text-slate-300 hover:text-maad-600 opacity-0 group-hover:opacity-100" onClick={() => startEditJob(j)}><Plus className="h-4 w-4" /></Button>
@@ -413,7 +413,7 @@ export function AdminDashboard() {
                 <div className="lg:col-span-5">
                   <div className="sticky top-10">
                     <div className="rounded-[2.5rem] bg-white p-8 shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-slate-100 dark:bg-slate-900 dark:border-slate-800">
-                      <h3 className="text-xl font-bold flex items-center gap-3 mb-8">
+                      <h3 className="text-xl font-bold flex items-center gap-3 mb-8 text-slate-900 dark:text-white">
                         <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-maad-50 text-maad-600">
                           {editingId ? <Check className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
                         </span>
@@ -451,8 +451,8 @@ export function AdminDashboard() {
                              <Icon className="h-6 w-6" />
                           </div>
                           <div>
-                            <h4 className="font-bold text-lg text-slate-900">{s.title_ar}</h4>
-                            <p className="text-sm text-slate-500 line-clamp-1">{s.description_ar}</p>
+                            <h4 className="font-bold text-lg text-slate-900 dark:text-white">{s.title_ar}</h4>
+                            <p className="text-sm text-slate-500 dark:text-slate-300 line-clamp-1">{s.description_ar}</p>
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -471,7 +471,7 @@ export function AdminDashboard() {
                 <div className="lg:col-span-5">
                   <div className="sticky top-10">
                     <div className="rounded-[2.5rem] bg-white p-8 shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-slate-100 dark:bg-slate-900 dark:border-slate-800">
-                      <h3 className="text-xl font-bold flex items-center gap-3 mb-8">
+                      <h3 className="text-xl font-bold flex items-center gap-3 mb-8 text-slate-900 dark:text-white">
                         <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-maad-50 text-maad-600">
                           {editingId ? <Check className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
                         </span>
@@ -515,7 +515,7 @@ export function AdminDashboard() {
                       <div className="relative w-full h-2/3">
                         <Image src={p.image_url} alt={p.name} fill className="object-contain" />
                       </div>
-                      <p className="mt-4 text-xs font-bold text-slate-400">{p.name}</p>
+                      <p className="mt-4 text-xs font-bold text-slate-400 dark:text-slate-300">{p.name}</p>
                       <span className="mt-1 text-[10px] font-bold text-maad-600 bg-maad-50 px-2 py-0.5 rounded-full">
                         {p.type === 'strategic' ? 'استراتيجي' : 'نجاح'}
                       </span>
@@ -534,7 +534,7 @@ export function AdminDashboard() {
                 <section className="rounded-[2.5rem] bg-white p-10 shadow-sm border border-slate-100 dark:bg-slate-900 dark:border-slate-800">
                   <h3 className="text-xl font-bold flex items-center gap-3 mb-8">
                     <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-maad-50 text-maad-600"><Phone className="h-4 w-4" /></span>
-                    معلومات التواصل
+                    <span className="text-slate-900 dark:text-white">معلومات التواصل</span>
                   </h3>
                   <form onSubmit={handleSettingsSubmit} className="space-y-6">
                     <div className="grid gap-6 sm:grid-cols-3">
@@ -564,11 +564,11 @@ export function AdminDashboard() {
                     <div className="pt-10 border-t border-slate-50">
                       <h3 className="text-xl font-bold flex items-center gap-3 mb-8">
                         <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-maad-50 text-maad-600"><LayoutGrid className="h-4 w-4" /></span>
-                        صور الصفحة الرئيسية
+                        <span className="text-slate-900 dark:text-white">صور الصفحة الرئيسية</span>
                       </h3>
                       <div className="grid gap-8 sm:grid-cols-2">
                         <div className="space-y-4">
-                          <label className="text-sm font-bold text-slate-600">من نحن</label>
+                          <label className="text-sm font-bold text-slate-600 dark:text-slate-300">من نحن</label>
                           <div className="group relative aspect-video rounded-[2rem] border-2 border-dashed border-slate-100 bg-slate-50 flex items-center justify-center overflow-hidden">
                             {settingsForm.home_who_we_are_image ? <Image src={settingsForm.home_who_we_are_image} alt="Who" fill className="object-cover" /> : <Upload className="h-6 w-6 text-slate-300" />}
                             <input type="file" className="hidden" id="who-img" onChange={e => handleImageUpload(e, 'setting', 'home_who_we_are_image')} />
@@ -576,7 +576,7 @@ export function AdminDashboard() {
                           </div>
                         </div>
                         <div className="space-y-4">
-                          <label className="text-sm font-bold text-slate-600">التطوير النشط</label>
+                          <label className="text-sm font-bold text-slate-600 dark:text-slate-300">التطوير النشط</label>
                           <div className="group relative aspect-video rounded-[2rem] border-2 border-dashed border-slate-100 bg-slate-50 flex items-center justify-center overflow-hidden">
                             {settingsForm.home_active_development_image ? <Image src={settingsForm.home_active_development_image} alt="Active" fill className="object-cover" /> : <Upload className="h-6 w-6 text-slate-300" />}
                             <input type="file" className="hidden" id="active-img" onChange={e => handleImageUpload(e, 'setting', 'home_active_development_image')} />
