@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Menu, X, Globe, Instagram, Facebook, Linkedin, Mail, Phone } from "lucide-react";
+import { Menu, X, Globe, Mail, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Logo } from "./Logo";
 import { useLanguage } from "./LanguageProvider";
@@ -240,15 +240,6 @@ export function Header() {
                 </a>
               </div>
 
-              <div className="flex items-center justify-between rounded-2xl bg-slate-50 px-6 py-4 dark:bg-slate-900">
-                <div className="flex gap-4">
-                  {[Instagram, Facebook, Linkedin].map((Icon, i) => (
-                    <a key={i} href="#" className="text-slate-400 transition hover:text-maad-600 dark:text-slate-500 dark:hover:text-maad-400">
-                      <Icon className="h-5 w-5" />
-                    </a>
-                  ))}
-                </div>
-              </div>
             </motion.div>
           </motion.div>
         )}
