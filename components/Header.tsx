@@ -46,7 +46,7 @@ export function Header() {
     { href: `/${locale}/about`, label: t.nav.about },
     { href: `/${locale}/services`, label: t.nav.services },
     { href: `/${locale}/gallery`, label: t.nav.gallery },
-    { href: `/${locale}/faqs`, label: t.nav.faqs },
+    { href: `/${locale}/careers`, label: t.nav.careers },
     { href: `/${locale}/contact`, label: t.nav.contact },
   ];
 

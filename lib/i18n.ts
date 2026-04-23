@@ -6,7 +6,7 @@ export type Dictionary = {
     about: string;
     services: string;
     gallery: string;
-    faqs: string;
+    careers: string;
     contact: string;
     logoTitle: string;
     logoSub: string;
@@ -105,7 +105,7 @@ export const dictionary: Record<Locale, Dictionary> = {
       about: "من نحن",
       services: "خدماتنا",
       gallery: "معرض الأعمال",
-      faqs: "الأسئلة الشائعة",
+      careers: "الوظائف",
       contact: "اتصل بنا",
       logoTitle: "حياة السعودية",
       logoSub: "استثمار وتطوير عقاري",
@@ -272,7 +272,7 @@ export const dictionary: Record<Locale, Dictionary> = {
       about: "About",
       services: "Services",
       gallery: "Gallery",
-      faqs: "FAQs",
+      careers: "Careers",
       contact: "Contact",
       logoTitle: "Hayat Saudi",
       logoSub: "Real Estate Development",
