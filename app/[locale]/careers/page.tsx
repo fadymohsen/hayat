@@ -222,32 +222,6 @@ export default function CareersPage() {
             )}
           </div>
 
-          {/* General Application */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-12 rounded-2xl bg-gradient-to-br from-maad-500 to-maad-700 p-8 text-center text-white sm:p-12"
-          >
-            <h3 className="text-2xl font-bold sm:text-3xl">
-              {isAr ? "لم تجد الوظيفة المناسبة؟" : "Don't see the right role?"}
-            </h3>
-            <p className="mx-auto mt-3 max-w-xl text-base text-white/80">
-              {isAr
-                ? "أرسل بياناتك وسنتواصل معك عندما تتوفر فرصة مناسبة."
-                : "Send us your details and we'll reach out when a matching opportunity arises."}
-            </p>
-            <div className="mt-6">
-              <Button
-                size="lg"
-                className="bg-white text-maad-700 hover:bg-white/90"
-                onClick={() => setSelectedJob(isAr ? "طلب عام" : "General Application")}
-              >
-                {isAr ? "أرسل بياناتك" : "Submit Your Details"}
-              </Button>
-            </div>
-          </motion.div>
         </div>
       </section>
 
