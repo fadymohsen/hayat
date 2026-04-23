@@ -21,18 +21,13 @@ export function useThemeContext() {
 }
 
 export default function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = React.useState<Theme>("light");
+  const [theme, setThemeState] = React.useState<Theme>("dark");
   const [mounted, setMounted] = React.useState(false);
 
-  // On mount, read from localStorage
+  // On mount, always enforce dark mode
   React.useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY) as Theme | null;
-    if (stored === "dark" || stored === "light") {
-      setThemeState(stored);
-      applyTheme(stored);
-    } else {
-      applyTheme("light");
-    }
+    applyTheme("dark");
+    localStorage.setItem(STORAGE_KEY, "dark");
     setMounted(true);
   }, []);
 

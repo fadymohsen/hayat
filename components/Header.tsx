@@ -7,7 +7,6 @@ import { Menu, X, Globe, Instagram, Facebook, Linkedin, Mail, Phone } from "luci
 import { motion, AnimatePresence } from "framer-motion";
 import { Logo } from "./Logo";
 import { useLanguage } from "./LanguageProvider";
-import ThemeToggle from "./ThemeToggle";
 import { cn } from "@/lib/utils";
 
 export function Header() {
@@ -113,8 +112,6 @@ export function Header() {
             <span>{locale === "ar" ? "English" : "العربية"}</span>
             <Globe className="h-3.5 w-3.5" />
           </button>
-
-          <ThemeToggle />
 
           <button
             className={cn(
@@ -243,8 +240,6 @@ export function Header() {
                     </a>
                   ))}
                 </div>
-                <div className="h-6 w-px bg-slate-200 dark:bg-slate-800" />
-                <ThemeToggle />
               </div>
             </motion.div>
           </motion.div>
