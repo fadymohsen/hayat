@@ -6,11 +6,24 @@ import { usePathname } from "next/navigation";
 import { Logo } from "./Logo";
 import { useLanguage } from "./LanguageProvider";
 
+import { useState, useEffect } from "react";
+
 export function Footer() {
   const { t, locale } = useLanguage();
   const pathname = usePathname();
+  const [settings, setSettings] = useState<any>(null);
+
+  useEffect(() => {
+    fetch('/api/settings').then(res => res.json()).then(data => setSettings(data));
+  }, []);
+
   if (pathname.includes('/admin')) return null;
   const year = new Date().getFullYear();
+
+  const email = settings?.contact_email || "Info@saudihayat.com";
+  const phone = settings?.contact_phone || "0114741991";
+  const whatsapp = settings?.contact_whatsapp || "+966 54 001 1644";
+  const whatsappClean = whatsapp.replace(/\s+/g, '');
 
   const quick = [
     { href: `/${locale}`, label: t.nav.home },
@@ -76,11 +89,11 @@ export function Footer() {
                   <Phone className="h-4 w-4" />
                 </span>
                 <a
-                  href="tel:0114741991"
+                  href={`tel:${phone}`}
                   dir="ltr"
                   className="font-semibold text-slate-800 transition hover:text-maad-600 dark:text-slate-300 dark:hover:text-maad-500"
                 >
-                  0114741991
+                  {phone}
                 </a>
               </li>
               <li className="flex items-center gap-3">
@@ -88,13 +101,13 @@ export function Footer() {
                   <MessageCircle className="h-4 w-4" />
                 </span>
                 <a
-                  href="https://wa.me/966540011644"
+                  href={`https://wa.me/${whatsappClean}`}
                   target="_blank"
                   rel="noreferrer"
                   dir="ltr"
                   className="font-semibold text-slate-800 transition hover:text-maad-600 dark:text-slate-300 dark:hover:text-maad-500"
                 >
-                  +966 54 001 1644
+                  {whatsapp}
                 </a>
               </li>
               <li className="flex items-center gap-3">
@@ -102,10 +115,10 @@ export function Footer() {
                   <Mail className="h-4 w-4" />
                 </span>
                 <a
-                  href="mailto:Info@saudihayat.com"
+                  href={`mailto:${email}`}
                   className="font-semibold text-slate-800 transition hover:text-maad-600 dark:text-slate-300 dark:hover:text-maad-500"
                 >
-                  Info@saudihayat.com
+                  {email}
                 </a>
               </li>
             </ul>

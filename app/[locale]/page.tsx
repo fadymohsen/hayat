@@ -27,8 +27,15 @@ import { cn } from "@/lib/utils";
 import { Partners } from "@/components/Partners";
 import { PartnersGrid } from "@/components/PartnersGrid";
 
+import { useState, useEffect } from "react";
+
 export default function HomePage() {
   const { t, locale } = useLanguage();
+  const [settings, setSettings] = useState<any>(null);
+
+  useEffect(() => {
+    fetch('/api/settings').then(res => res.json()).then(data => setSettings(data));
+  }, []);
 
   const services = [
     {
@@ -207,7 +214,7 @@ export default function HomePage() {
             >
               <div className="relative w-full aspect-[3/4] rounded-[2rem] overflow-hidden shadow-2xl ring-1 ring-slate-200 dark:ring-slate-800">
                 <Image
-                  src="/projects/Hayat Hotel-1.jpg"
+                  src={settings?.home_active_development_image || "/projects/Hayat Hotel-1.jpg"}
                   alt="Hayat Tower active construction"
                   fill
                   className="object-cover transition-transform duration-700 hover:scale-105"
@@ -262,7 +269,7 @@ export default function HomePage() {
             >
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-2xl">
                 <Image
-                  src="/projects/Riyadh Villa-1.png"
+                  src={settings?.home_who_we_are_image || "/projects/Riyadh Villa-1.png"}
                   alt={t.home.aboutTitle}
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"

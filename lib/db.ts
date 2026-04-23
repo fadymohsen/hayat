@@ -32,3 +32,26 @@ export type Job = {
   type_ar: string;
   created_at: Date;
 };
+
+export type Service = {
+  id: number;
+  title_en: string;
+  title_ar: string;
+  description_en: string;
+  description_ar: string;
+  icon_name: string;
+  created_at: Date;
+};
+
+export type Partner = {
+  id: number;
+  name: string;
+  image_url: string;
+  type: 'strategic' | 'success';
+  created_at: Date;
+};
+
+export type Setting = {
+  key: string;
+  value: string;
+};

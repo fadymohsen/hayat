@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useLanguage } from "@/components/LanguageProvider";
+import { cn } from "@/lib/utils";
 
 const partners = [
   {
@@ -14,8 +15,20 @@ const partners = [
   },
 ];
 
+import { useState, useEffect } from "react";
+import { Partner } from "@/lib/db";
+
 export function PartnersGrid() {
   const { locale } = useLanguage();
+  const [partners, setPartners] = useState<Partner[]>([]);
+
+  useEffect(() => {
+    fetch('/api/partners').then(res => res.json()).then(data => {
+      setPartners(data.filter((p: Partner) => p.type === 'strategic'));
+    });
+  }, []);
+
+  if (partners.length === 0) return null;
 
   return (
     <section className="bg-white py-24 dark:bg-slate-950 sm:py-32 border-t border-slate-100 dark:border-slate-900">
@@ -29,14 +42,17 @@ export function PartnersGrid() {
           </h2>
         </div>
 
-        <div className="mx-auto grid max-w-2xl grid-cols-2 items-center gap-8">
+        <div className={cn(
+          "mx-auto grid items-center gap-8",
+          partners.length === 1 ? "max-w-sm grid-cols-1" : "max-w-4xl grid-cols-2 md:grid-cols-3"
+        )}>
           {partners.map((partner) => (
             <div
-              key={partner.name}
+              key={partner.id}
               className="flex items-center justify-center rounded-2xl bg-slate-50 p-8 ring-1 ring-slate-100 transition hover:shadow-lg hover:ring-maad-200 dark:bg-slate-900 dark:ring-slate-800 dark:hover:ring-maad-500/30"
             >
               <Image
-                src={partner.logo}
+                src={partner.image_url}
                 alt={partner.name}
                 width={220}
                 height={110}

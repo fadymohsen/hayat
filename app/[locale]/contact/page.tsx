@@ -17,10 +17,17 @@ import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/components/LanguageProvider";
 
 
+import { useEffect } from "react";
+
 export default function ContactPage() {
   const { t } = useLanguage();
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [settings, setSettings] = useState<any>(null);
+
+  useEffect(() => {
+    fetch('/api/settings').then(res => res.json()).then(data => setSettings(data));
+  }, []);
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -33,26 +40,31 @@ export default function ContactPage() {
     }, 800);
   };
 
+  const email = settings?.contact_email || "Info@saudihayat.com";
+  const phone = settings?.contact_phone || "0114741991";
+  const whatsapp = settings?.contact_whatsapp || "+966 54 001 1644";
+  const whatsappClean = whatsapp.replace(/\s+/g, '');
+
   const contactCards = [
     {
       icon: Phone,
       label: t.common.callNow,
-      value: "0114741991",
-      href: "tel:0114741991",
+      value: phone,
+      href: `tel:${phone}`,
       dir: "ltr" as const,
     },
     {
       icon: MessageCircle,
       label: "WhatsApp",
-      value: "+966 54 001 1644",
-      href: "https://wa.me/966540011644",
+      value: whatsapp,
+      href: `https://wa.me/${whatsappClean}`,
       dir: "ltr" as const,
     },
     {
       icon: Mail,
       label: "Email",
-      value: "Info@saudihayat.com",
-      href: "mailto:Info@saudihayat.com",
+      value: email,
+      href: `mailto:${email}`,
       dir: "ltr" as const,
     },
   ];

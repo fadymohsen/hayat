@@ -27,8 +27,22 @@ const clients = [
   },
 ];
 
+import { useState, useEffect } from "react";
+import { Partner } from "@/lib/db";
+
 export function Partners() {
   const { locale } = useLanguage();
+  const [partners, setPartners] = useState<Partner[]>([]);
+
+  useEffect(() => {
+    fetch('/api/partners').then(res => res.json()).then(data => {
+      setPartners(data.filter((p: Partner) => p.type === 'success'));
+    });
+  }, []);
+
+  if (partners.length === 0) return null;
+
+  const displayPartners = [...partners, ...partners, ...partners, ...partners];
 
   return (
     <section className="bg-slate-50 py-24 dark:bg-slate-950 sm:py-32 overflow-hidden border-t border-slate-100 dark:border-slate-900">
@@ -57,17 +71,16 @@ export function Partners() {
               The animation moves from 0 to -25% (since we have 4 sets) 
               Wait, simpler: 2 sets and -50%.
             */}
-            {[...clients, ...clients, ...clients, ...clients].map((item, i) => (
+            {displayPartners.map((item, i) => (
               <div 
                 key={i} 
                 className="mx-8 flex shrink-0 items-center justify-center w-[160px] sm:w-[220px] transition-all duration-500 hover:scale-110"
               >
                 <Image
-                  src={item.logo}
+                  src={item.image_url}
                   alt={item.name}
                   width={220}
                   height={110}
-                  priority
                   className="max-h-16 w-auto object-contain sm:max-h-24"
                 />
               </div>
@@ -76,17 +89,16 @@ export function Partners() {
           
           {/* Duplicate set for seamless looping */}
           <div className="flex w-fit animate-marquee whitespace-nowrap group-hover:[animation-play-state:paused]" aria-hidden="true">
-            {[...clients, ...clients, ...clients, ...clients].map((item, i) => (
+            {displayPartners.map((item, i) => (
               <div 
                 key={`dup-${i}`} 
-                className="mx-8 flex shrink-0 items-center justify-center w-[160px] sm:w-[220px] grayscale opacity-50 transition-all duration-500 hover:grayscale-0 hover:opacity-100 hover:scale-110"
+                className="mx-8 flex shrink-0 items-center justify-center w-[160px] sm:w-[220px] transition-all duration-500 hover:scale-110"
               >
                 <Image
-                  src={item.logo}
+                  src={item.image_url}
                   alt={item.name}
                   width={220}
                   height={110}
-                  priority
                   className="max-h-16 w-auto object-contain sm:max-h-24"
                 />
               </div>
