@@ -5,9 +5,16 @@ import { Project, Job, Service, Partner, Setting } from "@/lib/db";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import * as Icons from "lucide-react";
-const { Plus, Trash2, LayoutGrid, Briefcase, LogOut, Upload, Loader2, Check, Phone, Mail, MessageCircle, Globe, Users, Wrench, ShieldCheck, Award } = Icons;
+const { Plus, Trash2, LayoutGrid, Briefcase, LogOut, Upload, Loader2, Check, Phone, Mail, MessageCircle, Globe, Users, Wrench, ShieldCheck, Award, AlertTriangle, CheckCircle, X, XCircle } = Icons;
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+
+type ModalState = {
+  open: boolean;
+  type: "confirm" | "success" | "error";
+  message: string;
+  onConfirm?: () => void;
+};
 
 export function AdminDashboard() {
   const [activeTab, setActiveTab] = useState<"projects" | "careers" | "services" | "partners" | "settings">("projects");
@@ -16,10 +23,33 @@ export function AdminDashboard() {
   const [services, setServices] = useState<Service[]>([]);
   const [partners, setPartners] = useState<Partner[]>([]);
   const [settings, setSettings] = useState<Record<string, string>>({});
-  
+
   const [loading, setLoading] = useState(true);
   const [isUploading, setIsUploading] = useState(false);
   const [editingId, setEditingId] = useState<number | null>(null);
+  const [modal, setModal] = useState<ModalState>({ open: false, type: "success", message: "" });
+
+  const showAlert = (message: string, type: "success" | "error" = "success") => {
+    setModal({ open: true, type, message });
+  };
+
+  const showConfirm = (message: string): Promise<boolean> => {
+    return new Promise((resolve) => {
+      setModal({
+        open: true,
+        type: "confirm",
+        message,
+        onConfirm: () => {
+          setModal(m => ({ ...m, open: false }));
+          resolve(true);
+        },
+      });
+    });
+  };
+
+  const closeModal = () => {
+    setModal(m => ({ ...m, open: false }));
+  };
 
   // Form states
   const [projectForm, setProjectForm] = useState({ title_en: "", title_ar: "", location_en: "", location_ar: "", image_url: "", type: "normal" });
@@ -126,7 +156,7 @@ export function AdminDashboard() {
       });
       if (res.ok) {
         fetchData();
-        alert("تم حفظ الإعدادات بنجاح");
+        showAlert("تم حفظ الإعدادات بنجاح", "success");
       }
     } catch (err) { console.error(err); }
   };
@@ -156,7 +186,7 @@ export function AdminDashboard() {
   };
 
   const handleDelete = async (type: string, id: number) => {
-    if (!confirm("هل أنت متأكد من الحذف؟")) return;
+    if (!(await showConfirm("هل أنت متأكد من الحذف؟"))) return;
     try {
       const res = await fetch(`/api/${type}?id=${id}`, { method: "DELETE" });
       if (res.ok) fetchData();
@@ -181,11 +211,11 @@ export function AdminDashboard() {
       } else {
         const errData = await res.json().catch(() => ({}));
         console.error("Upload failed:", errData);
-        alert("فشل رفع الصورة: " + (errData.details || errData.error || "خطأ غير معروف"));
+        showAlert("فشل رفع الصورة: " + (errData.details || errData.error || "خطأ غير معروف"), "error");
       }
     } catch (err) { 
       console.error("Upload error:", err); 
-      alert("حدث خطأ أثناء الرفع");
+      showAlert("حدث خطأ أثناء الرفع", "error");
     } finally { 
       setIsUploading(false); 
     }
@@ -649,7 +679,64 @@ export function AdminDashboard() {
           </Button>
         </div>
       </div>
+
+      {/* Branded Modal */}
+      {modal.open && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4" onClick={() => { if (modal.type !== "confirm") closeModal(); }}>
+          <div
+            className="relative w-full max-w-sm rounded-3xl bg-white p-8 shadow-2xl dark:bg-slate-900 text-center"
+            dir="rtl"
+            onClick={e => e.stopPropagation()}
+          >
+            <div className={cn(
+              "mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full",
+              modal.type === "success" && "bg-green-100 dark:bg-green-900/30",
+              modal.type === "error" && "bg-red-100 dark:bg-red-900/30",
+              modal.type === "confirm" && "bg-maad-50 dark:bg-maad-900/30",
+            )}>
+              {modal.type === "success" && <CheckCircle className="h-8 w-8 text-green-600 dark:text-green-400" />}
+              {modal.type === "error" && <XCircle className="h-8 w-8 text-red-600 dark:text-red-400" />}
+              {modal.type === "confirm" && <AlertTriangle className="h-8 w-8 text-maad-600 dark:text-maad-400" />}
+            </div>
+
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
+              {modal.type === "success" ? "تم بنجاح" : modal.type === "error" ? "خطأ" : "تأكيد"}
+            </h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">{modal.message}</p>
+
+            <div className="flex items-center justify-center gap-3">
+              {modal.type === "confirm" ? (
+                <>
+                  <Button
+                    onClick={closeModal}
+                    variant="outline"
+                    className="rounded-xl px-6 h-11 border-slate-200 dark:border-slate-700 dark:text-white"
+                  >
+                    إلغاء
+                  </Button>
+                  <Button
+                    onClick={modal.onConfirm}
+                    className="rounded-xl px-6 h-11 bg-red-600 text-white hover:bg-red-700"
+                  >
+                    <Trash2 className="h-4 w-4 ml-1" />
+                    حذف
+                  </Button>
+                </>
+              ) : (
+                <Button
+                  onClick={closeModal}
+                  className={cn(
+                    "rounded-xl px-8 h-11 font-bold",
+                    modal.type === "success" ? "bg-maad-600 text-white hover:bg-maad-700" : "bg-slate-900 text-white dark:bg-white dark:text-slate-900"
+                  )}
+                >
+                  حسنًا
+                </Button>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
-
