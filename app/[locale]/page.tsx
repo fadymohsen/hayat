@@ -207,7 +207,7 @@ export default function HomePage() {
             >
               <div className="relative w-full aspect-[3/4] rounded-[2rem] overflow-hidden shadow-2xl ring-1 ring-slate-200 dark:ring-slate-800">
                 <Image
-                  src="/projects/project-1.jpg"
+                  src="/projects/Hayat Hotel-1.jpg"
                   alt="Hayat Tower active construction"
                   fill
                   className="object-cover transition-transform duration-700 hover:scale-105"
@@ -262,7 +262,7 @@ export default function HomePage() {
             >
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-2xl">
                 <Image
-                  src="/projects/project-3.jpeg"
+                  src="/projects/Riyadh Villa-1.png"
                   alt={t.home.aboutTitle}
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
