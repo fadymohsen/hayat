@@ -15,7 +15,7 @@ const clients = [
   },
   {
     name: "Client 3",
-    logo: "/clients/Gemini_Generated_Image_wvoysiwvoysiwvoy-removebg-preview.png",
+    logo: "/clients/Gemini_Generated_Image_x29oukx29oukx29o.png",
   },
   {
     name: "Client 4",
