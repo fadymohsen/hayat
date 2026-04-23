@@ -175,11 +175,20 @@ export function AdminDashboard() {
 
       if (res.ok) {
         const { url } = await res.json();
-        if (target === 'project') setProjectForm({ ...projectForm, image_url: url });
-        else if (target === 'partner') setPartnerForm({ ...partnerForm, image_url: url });
-        else if (target === 'setting' && settingKey) setSettingsForm({ ...settingsForm, [settingKey]: url });
+        if (target === 'project') setProjectForm(prev => ({ ...prev, image_url: url }));
+        else if (target === 'partner') setPartnerForm(prev => ({ ...prev, image_url: url }));
+        else if (target === 'setting' && settingKey) setSettingsForm(prev => ({ ...prev, [settingKey]: url }));
+      } else {
+        const errData = await res.json().catch(() => ({}));
+        console.error("Upload failed:", errData);
+        alert("فشل رفع الصورة: " + (errData.error || "خطأ غير معروف"));
       }
-    } catch (err) { console.error("Upload error:", err); } finally { setIsUploading(false); }
+    } catch (err) { 
+      console.error("Upload error:", err); 
+      alert("حدث خطأ أثناء الرفع");
+    } finally { 
+      setIsUploading(false); 
+    }
   };
 
   return (
@@ -309,7 +318,10 @@ export function AdminDashboard() {
                           <div className="pt-2">
                             <label className="group relative flex aspect-[16/10] w-full cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[2rem] border-2 border-dashed border-slate-200 bg-slate-50 hover:border-maad-400">
                               {isUploading ? <Loader2 className="h-10 w-10 animate-spin text-maad-500" /> : projectForm.image_url ? <Image src={projectForm.image_url} alt="Preview" fill className="object-cover" /> : <Upload className="h-6 w-6 text-slate-400" />}
-                              <input type="file" className="hidden" onChange={e => handleImageUpload(e, 'project')} accept="image/*" />
+                              <input type="file" id="project-img" className="hidden" onChange={e => handleImageUpload(e, 'project')} accept="image/*" />
+                              {projectForm.image_url && !isUploading && (
+                                <Button variant="outline" size="sm" type="button" className="absolute bottom-4 rounded-full opacity-0 group-hover:opacity-100" onClick={(e) => { e.preventDefault(); document.getElementById('project-img')?.click(); }}>تغيير الصورة</Button>
+                              )}
                             </label>
                           </div>
                         </div>
@@ -484,7 +496,10 @@ export function AdminDashboard() {
                         <div className="pt-2">
                           <label className="group relative flex aspect-video w-full cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[2rem] border-2 border-dashed border-slate-200 bg-slate-50 hover:border-maad-400">
                             {isUploading ? <Loader2 className="h-8 w-8 animate-spin text-maad-500" /> : partnerForm.image_url ? <Image src={partnerForm.image_url} alt="Logo" fill className="object-contain p-4" /> : <Upload className="h-6 w-6 text-slate-400" />}
-                            <input type="file" className="hidden" onChange={e => handleImageUpload(e, 'partner')} accept="image/*" />
+                            <input type="file" id="partner-img" className="hidden" onChange={e => handleImageUpload(e, 'partner')} accept="image/*" />
+                            {partnerForm.image_url && !isUploading && (
+                              <Button variant="outline" size="sm" type="button" className="absolute bottom-4 rounded-full opacity-0 group-hover:opacity-100" onClick={(e) => { e.preventDefault(); document.getElementById('partner-img')?.click(); }}>تغيير الشعار</Button>
+                            )}
                           </label>
                         </div>
                         <Button type="submit" className="w-full h-14 rounded-2xl bg-maad-600 text-white font-bold" disabled={!partnerForm.image_url}>
