@@ -2,9 +2,16 @@ import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+const TO_EMAIL = process.env.CONTACT_EMAIL || "Info@saudihayat.com";
+const FROM_EMAIL = process.env.FROM_EMAIL || "Hayat Careers <onboarding@resend.dev>";
 
 export async function POST(req: NextRequest) {
   try {
+    if (!process.env.RESEND_API_KEY) {
+      console.error("RESEND_API_KEY is not set");
+      return NextResponse.json({ error: "Email service not configured" }, { status: 500 });
+    }
+
     const { name, phone, email, jobTitle } = await req.json();
 
     if (!name || !phone || !email || !jobTitle) {
@@ -12,8 +19,8 @@ export async function POST(req: NextRequest) {
     }
 
     const { data, error: sendError } = await resend.emails.send({
-      from: "Hayat Careers <onboarding@resend.dev>",
-      to: "Info@saudihayat.com",
+      from: FROM_EMAIL,
+      to: TO_EMAIL,
       replyTo: email,
       subject: `New Job Application: ${jobTitle}`,
       html: `
