@@ -38,11 +38,11 @@ export default function AboutPage() {
           src="/about-hero.jpg"
           alt=""
           fill
-          className="object-cover opacity-15"
+          className="object-cover opacity-25"
           priority
           aria-hidden
         />
-        <div className="absolute inset-0 bg-slate-950/60" aria-hidden />
+        <div className="absolute inset-0 bg-slate-950/40" aria-hidden />
         <div className="absolute inset-0 bg-grid opacity-50" aria-hidden />
         <div className="absolute inset-0 bg-radial-gold" aria-hidden />
         <div className="relative mx-auto w-full max-w-5xl px-4 text-center sm:px-6 lg:px-8">
