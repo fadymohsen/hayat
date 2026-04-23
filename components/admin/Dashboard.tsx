@@ -117,7 +117,7 @@ export function AdminDashboard() {
       location_en: p.location_en,
       location_ar: p.location_ar,
       image_url: p.image_url,
-      type: p.type
+      type: p.type || "normal"
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
