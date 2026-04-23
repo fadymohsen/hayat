@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import ThemeProvider from "@/components/ThemeProvider";
 import type { Locale } from "@/lib/i18n";
 import type { Metadata } from "next";
+import { cn } from "@/lib/utils";
 
 const locales = ["ar", "en"] as const;
 
