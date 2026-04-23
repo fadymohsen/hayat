@@ -181,7 +181,7 @@ export function AdminDashboard() {
       } else {
         const errData = await res.json().catch(() => ({}));
         console.error("Upload failed:", errData);
-        alert("فشل رفع الصورة: " + (errData.error || "خطأ غير معروف"));
+        alert("فشل رفع الصورة: " + (errData.details || errData.error || "خطأ غير معروف"));
       }
     } catch (err) { 
       console.error("Upload error:", err); 

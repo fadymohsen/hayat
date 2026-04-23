@@ -13,17 +13,23 @@ export async function POST(request: Request): Promise<NextResponse> {
     const formData = await request.formData();
     const file = formData.get('file') as File;
 
-    if (!file) {
-      return NextResponse.json({ error: 'No file provided' }, { status: 400 });
+    if (!file || typeof file === 'string') {
+      return NextResponse.json({ error: 'No file provided or invalid file format' }, { status: 400 });
     }
+
+    console.log('API Upload: Starting put for', file.name, 'size:', file.size);
 
     const blob = await put(filename || file.name, file, {
       access: 'public',
     });
 
+    console.log('API Upload: Success:', blob.url);
     return NextResponse.json(blob);
-  } catch (error) {
+  } catch (error: any) {
     console.error('Upload Error:', error);
-    return NextResponse.json({ error: 'Upload failed' }, { status: 500 });
+    return NextResponse.json({ 
+      error: 'Upload failed', 
+      details: error.message || 'Unknown error'
+    }, { status: 500 });
   }
 }
