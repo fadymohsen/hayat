@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Briefcase, MapPin, Clock, Send, Users, TrendingUp, Heart, GraduationCap } from "lucide-react";
+import { Briefcase, MapPin, Clock, Send, Users, TrendingUp, Heart, GraduationCap, X, Loader2, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { useLanguage } from "@/components/LanguageProvider";
-import Link from "next/link";
 
 const benefits = {
   en: [
@@ -40,9 +40,14 @@ const openings = {
 export default function CareersPage() {
   const { t, locale } = useLanguage();
   const isAr = locale === "ar";
-  
+
   const [activeOpenings, setActiveOpenings] = useState<any[]>(openings[locale]);
   const [loading, setLoading] = useState(true);
+  const [selectedJob, setSelectedJob] = useState<string | null>(null);
+  const [formData, setFormData] = useState({ name: "", phone: "", email: "" });
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     async function fetchJobs() {
@@ -51,7 +56,6 @@ export default function CareersPage() {
         if (response.ok) {
           const data = await response.json();
           if (data && data.length > 0) {
-            // Map DB fields to current structure
             const mappedJobs = data.map((j: any) => ({
               title: isAr ? j.title_ar : j.title_en,
               department: isAr ? j.department_ar : j.department_en,
@@ -70,6 +74,47 @@ export default function CareersPage() {
 
     fetchJobs();
   }, [isAr]);
+
+  useEffect(() => {
+    if (selectedJob) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => { document.body.style.overflow = "unset"; };
+  }, [selectedJob]);
+
+  const handleApply = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setError("");
+
+    try {
+      const res = await fetch("/api/apply", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, jobTitle: selectedJob }),
+      });
+
+      if (res.ok) {
+        setSubmitted(true);
+        setFormData({ name: "", phone: "", email: "" });
+      } else {
+        setError(isAr ? "حدث خطأ، يرجى المحاولة مرة أخرى." : "Something went wrong. Please try again.");
+      }
+    } catch {
+      setError(isAr ? "حدث خطأ، يرجى المحاولة مرة أخرى." : "Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const closeModal = () => {
+    setSelectedJob(null);
+    setSubmitted(false);
+    setError("");
+    setFormData({ name: "", phone: "", email: "" });
+  };
 
   return (
     <>
@@ -164,11 +209,13 @@ export default function CareersPage() {
                       </span>
                     </div>
                   </div>
-                  <Button asChild size="sm" className="shrink-0 dark:bg-maad-500 dark:text-white dark:hover:bg-maad-400">
-                    <a href="mailto:Info@saudihayat.com">
-                      <Send className="h-4 w-4" />
-                      {isAr ? "تقدم الآن" : "Apply Now"}
-                    </a>
+                  <Button
+                    size="sm"
+                    className="shrink-0 dark:bg-maad-500 dark:text-white dark:hover:bg-maad-400"
+                    onClick={() => setSelectedJob(job.title)}
+                  >
+                    <Send className="h-4 w-4" />
+                    {isAr ? "تقدم الآن" : "Apply Now"}
                   </Button>
                 </motion.div>
               ))
@@ -188,19 +235,141 @@ export default function CareersPage() {
             </h3>
             <p className="mx-auto mt-3 max-w-xl text-base text-white/80">
               {isAr
-                ? "أرسل سيرتك الذاتية وسنتواصل معك عندما تتوفر فرصة مناسبة."
-                : "Send us your CV and we'll reach out when a matching opportunity arises."}
+                ? "أرسل بياناتك وسنتواصل معك عندما تتوفر فرصة مناسبة."
+                : "Send us your details and we'll reach out when a matching opportunity arises."}
             </p>
             <div className="mt-6">
-              <Button asChild size="lg" className="bg-white text-maad-700 hover:bg-white/90">
-                <a href="mailto:Info@saudihayat.com">
-                  {isAr ? "أرسل سيرتك الذاتية" : "Submit Your CV"}
-                </a>
+              <Button
+                size="lg"
+                className="bg-white text-maad-700 hover:bg-white/90"
+                onClick={() => setSelectedJob(isAr ? "طلب عام" : "General Application")}
+              >
+                {isAr ? "أرسل بياناتك" : "Submit Your Details"}
               </Button>
             </div>
           </motion.div>
         </div>
       </section>
+
+      {/* Application Modal */}
+      <AnimatePresence>
+        {selectedJob && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
+            onClick={(e) => { if (e.target === e.currentTarget) closeModal(); }}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="relative w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl dark:bg-slate-900"
+              dir={isAr ? "rtl" : "ltr"}
+            >
+              <button
+                onClick={closeModal}
+                className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full text-slate-400 transition hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-white"
+              >
+                <X className="h-5 w-5" />
+              </button>
+
+              {submitted ? (
+                <div className="flex flex-col items-center py-8 text-center">
+                  <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
+                    <CheckCircle className="h-8 w-8 text-green-600 dark:text-green-400" />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                    {isAr ? "تم إرسال طلبك بنجاح!" : "Application Submitted!"}
+                  </h3>
+                  <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+                    {isAr ? "سنتواصل معك قريبًا." : "We'll get back to you soon."}
+                  </p>
+                  <Button onClick={closeModal} className="mt-6" variant="outline">
+                    {isAr ? "إغلاق" : "Close"}
+                  </Button>
+                </div>
+              ) : (
+                <>
+                  <div className="mb-6">
+                    <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-xl bg-maad-50 text-maad-600">
+                      <Send className="h-5 w-5" />
+                    </div>
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                      {isAr ? "التقديم على وظيفة" : "Apply for Position"}
+                    </h3>
+                    <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{selectedJob}</p>
+                  </div>
+
+                  <form onSubmit={handleApply} className="space-y-4">
+                    <div>
+                      <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-400">
+                        {isAr ? "الاسم الكامل" : "Full Name"}
+                      </label>
+                      <Input
+                        required
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        placeholder={isAr ? "أدخل اسمك الكامل" : "Enter your full name"}
+                        className="h-12 rounded-xl bg-slate-50 dark:bg-slate-800 dark:text-white dark:border-slate-700"
+                      />
+                    </div>
+                    <div>
+                      <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-400">
+                        {isAr ? "رقم الهاتف" : "Phone Number"}
+                      </label>
+                      <Input
+                        required
+                        type="tel"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        placeholder={isAr ? "05xxxxxxxx" : "+966 5xxxxxxxx"}
+                        className="h-12 rounded-xl bg-slate-50 dark:bg-slate-800 dark:text-white dark:border-slate-700"
+                        dir="ltr"
+                      />
+                    </div>
+                    <div>
+                      <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-400">
+                        {isAr ? "البريد الإلكتروني" : "Email Address"}
+                      </label>
+                      <Input
+                        required
+                        type="email"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        placeholder={isAr ? "example@email.com" : "example@email.com"}
+                        className="h-12 rounded-xl bg-slate-50 dark:bg-slate-800 dark:text-white dark:border-slate-700"
+                        dir="ltr"
+                      />
+                    </div>
+
+                    {error && (
+                      <p className="text-sm text-red-500">{error}</p>
+                    )}
+
+                    <Button
+                      type="submit"
+                      disabled={submitting}
+                      className="w-full h-12 rounded-xl bg-maad-600 text-white font-bold hover:bg-maad-700"
+                    >
+                      {submitting ? (
+                        <Loader2 className="h-5 w-5 animate-spin" />
+                      ) : (
+                        <>
+                          <Send className="h-4 w-4" />
+                          {isAr ? "إرسال الطلب" : "Submit Application"}
+                        </>
+                      )}
+                    </Button>
+                  </form>
+                </>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
