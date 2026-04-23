@@ -6,7 +6,7 @@ import { useLanguage } from "@/components/LanguageProvider";
 const partners = [
   {
     name: "Partner 1",
-    logo: "/Partners/Gemini_Generated_Image_uju0rhuju0rhuju0.png",
+    logo: "/Partners/Gemini_Generated_Image_8fpph78fpph78fpp-removebg-preview.png",
   },
   {
     name: "Partner 2",
