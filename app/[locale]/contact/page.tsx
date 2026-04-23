@@ -29,15 +29,42 @@ export default function ContactPage() {
     fetch('/api/settings').then(res => res.json()).then(data => setSettings(data));
   }, []);
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const [error, setError] = useState("");
+
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
+    setError("");
+
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          email: formData.get("email"),
+          phone: formData.get("phone"),
+          service: formData.get("service"),
+          subject: formData.get("subject"),
+          message: formData.get("message"),
+        }),
+      });
+
+      if (res.ok) {
+        setSubmitted(true);
+        form.reset();
+        setTimeout(() => setSubmitted(false), 6000);
+      } else {
+        setError("Something went wrong. Please try again.");
+      }
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
       setLoading(false);
-      setSubmitted(true);
-      (e.target as HTMLFormElement).reset();
-      setTimeout(() => setSubmitted(false), 6000);
-    }, 800);
+    }
   };
 
   const email = settings?.contact_email || "Info@saudihayat.com";
@@ -235,6 +262,10 @@ export default function ContactPage() {
                         </>
                       )}
                     </Button>
+
+                    {error && (
+                      <p className="text-sm font-semibold text-red-500">{error}</p>
+                    )}
 
                     {submitted && (
                       <motion.div
