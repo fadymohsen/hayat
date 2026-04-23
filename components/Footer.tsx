@@ -25,12 +25,14 @@ export function Footer() {
   const whatsapp = settings?.contact_whatsapp || "+966 54 001 1644";
   const whatsappClean = whatsapp.replace(/\s+/g, '');
 
+  const careersVisible = settings?.careers_visible !== 'false';
+
   const quick = [
     { href: `/${locale}`, label: t.nav.home },
     { href: `/${locale}/about`, label: t.nav.about },
     { href: `/${locale}/services`, label: t.nav.services },
     { href: `/${locale}/gallery`, label: t.nav.gallery },
-    { href: `/${locale}/careers`, label: t.nav.careers },
+    ...(careersVisible ? [{ href: `/${locale}/careers`, label: t.nav.careers }] : []),
     { href: `/${locale}/contact`, label: t.nav.contact },
   ];
 

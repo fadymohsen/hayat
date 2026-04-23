@@ -16,9 +16,16 @@ export function Header() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [careersVisible, setCareersVisible] = useState(true);
   const isHome = pathname === `/${locale}` || pathname === `/${locale}/`;
 
   useEffect(() => setOpen(false), [pathname]);
+
+  useEffect(() => {
+    fetch('/api/settings').then(r => r.json()).then(data => {
+      if (data.careers_visible === 'false') setCareersVisible(false);
+    }).catch(() => {});
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -47,7 +54,7 @@ export function Header() {
     { href: `/${locale}/about`, label: t.nav.about },
     { href: `/${locale}/services`, label: t.nav.services },
     { href: `/${locale}/gallery`, label: t.nav.gallery },
-    { href: `/${locale}/careers`, label: t.nav.careers },
+    ...(careersVisible ? [{ href: `/${locale}/careers`, label: t.nav.careers }] : []),
     { href: `/${locale}/contact`, label: t.nav.contact },
   ];
 

@@ -353,6 +353,42 @@ export function AdminDashboard() {
             )}
 
             {activeTab === "careers" && (
+              <div className="space-y-8">
+                {/* Careers Visibility Toggle */}
+                <div className="flex items-center justify-between rounded-2xl bg-white p-6 border border-slate-100 shadow-sm dark:bg-slate-900 dark:border-slate-800">
+                  <div className="flex items-center gap-3">
+                    <div className="h-10 w-10 rounded-xl bg-maad-50 flex items-center justify-center text-maad-600">
+                      <Briefcase className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-slate-900 dark:text-white">إظهار صفحة الوظائف</p>
+                      <p className="text-xs text-slate-400">إظهار أو إخفاء رابط الوظائف من القائمة والفوتر</p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={async () => {
+                      const newVal = settings.careers_visible === 'false' ? 'true' : 'false';
+                      setSettings((prev: Record<string, string>) => ({ ...prev, careers_visible: newVal }));
+                      await fetch('/api/settings', {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ careers_visible: newVal })
+                      });
+                    }}
+                    className={cn(
+                      "relative inline-flex h-7 w-12 shrink-0 cursor-pointer rounded-full transition-colors duration-200",
+                      settings.careers_visible !== 'false' ? "bg-maad-600" : "bg-slate-300 dark:bg-slate-700"
+                    )}
+                  >
+                    <span
+                      className={cn(
+                        "inline-block h-5 w-5 rounded-full bg-white shadow-md transform transition-transform duration-200 mt-1",
+                        settings.careers_visible !== 'false' ? "translate-x-1" : "translate-x-6"
+                      )}
+                    />
+                  </button>
+                </div>
+
               <div className="grid gap-12 lg:grid-cols-12">
                 <div className="lg:col-span-5">
                   <div className="sticky top-10">
@@ -405,6 +441,7 @@ export function AdminDashboard() {
                     </article>
                   ))}
                 </div>
+              </div>
               </div>
             )}
 
