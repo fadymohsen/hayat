@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   MapPin,
@@ -60,6 +61,15 @@ export default function ContactPage() {
     <>
       
       <section className="relative overflow-hidden border-b border-slate-100 bg-slate-50 py-20 dark:border-slate-800 dark:bg-slate-900 sm:py-24">
+        <Image
+          src="/contact-hero.jpg"
+          alt=""
+          fill
+          className="object-cover opacity-25"
+          priority
+          aria-hidden
+        />
+        <div className="absolute inset-0 bg-slate-950/40" aria-hidden />
         <div className="absolute inset-0 bg-grid opacity-50" aria-hidden />
         <div className="absolute inset-0 bg-radial-gold" aria-hidden />
         <div className="relative mx-auto w-full max-w-5xl px-4 text-center sm:px-6 lg:px-8">
