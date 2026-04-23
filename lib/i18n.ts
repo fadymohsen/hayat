@@ -133,7 +133,7 @@ export const dictionary: Record<Locale, Dictionary> = {
       servicesTitle: "خدماتنا الأساسية",
       servicesSubtitle:
         "نقدم منظومة متكاملة من الخدمات العقارية التي تغطي دورة حياة المشروع من الفكرة إلى التسليم.",
-      galleryTitle: "معرض أعمال معاد",
+      galleryTitle: "معرض أعمال حياة",
       gallerySubtitle:
         "مجموعة مختارة من أبرز أعمالنا التي تعكس التزامنا بالجودة والتميّز.",
       ctaTitle: "هل لديك مشروع في الأفق؟",
@@ -170,10 +170,8 @@ export const dictionary: Record<Locale, Dictionary> = {
     },
     about: {
       title: "من نحن",
-      subtitle:
-        "شركة حياة السعودية للاستثمار والتطوير العقاري — حيث تلتقي الخبرة بالابتكار.",
-      intro:
-        "نحن شركة سعودية متخصصة في تطوير المشاريع العقارية وإدارتها، نعمل منذ أكثر من ١١ عامًا على إثراء المشهد العمراني في المملكة بمشاريع ترفع معايير الجودة وتلبّي تطلعات العملاء.",
+      subtitle: "",
+      intro: "",
       visionTitle: "رؤيتنا",
       visionText:
         "أن نكون الشركة الرائدة في قطاع التطوير العقاري على مستوى المملكة العربية السعودية، من خلال تقديم مشاريع نوعية تواكب رؤية المملكة ٢٠٣٠.",
@@ -209,7 +207,7 @@ export const dictionary: Record<Locale, Dictionary> = {
     galleryPage: {
       title: "معرض الأعمال",
       subtitle:
-        "مختارات من أعمال معاد التي أنجزناها بجودة عالية وتنفيذ دقيق.",
+        "مختارات من أعمال حياة التي أنجزناها بجودة عالية وتنفيذ دقيق.",
       browse: "تصفح كامل المعرض",
     },
     faqsPage: {
@@ -303,7 +301,7 @@ export const dictionary: Record<Locale, Dictionary> = {
       servicesTitle: "Core Services",
       servicesSubtitle:
         "An integrated suite of real estate services covering the full project lifecycle — from concept to handover.",
-      galleryTitle: "Featured MAAD Gallery",
+      galleryTitle: "Featured HAYAT Gallery",
       gallerySubtitle:
         "A curated selection of our most notable works that reflect our commitment to quality and excellence.",
       ctaTitle: "Have a Project on the Horizon?",
@@ -340,10 +338,8 @@ export const dictionary: Record<Locale, Dictionary> = {
     },
     about: {
       title: "Who We Are",
-      subtitle:
-        "Hayat Saudi Investment & Real Estate Development — where expertise meets innovation.",
-      intro:
-        "We are a Saudi company specialized in developing and managing real estate projects. For more than 11 years, we have been enriching the Kingdom's urban landscape with projects that raise the bar for quality and meet our clients' aspirations.",
+      subtitle: "",
+      intro: "",
       visionTitle: "Our Vision",
       visionText:
         "To be the leading company in the real estate development sector across the Kingdom of Saudi Arabia, by delivering distinctive projects aligned with Vision 2030.",
@@ -386,7 +382,7 @@ export const dictionary: Record<Locale, Dictionary> = {
     galleryPage: {
       title: "Our Gallery",
       subtitle:
-        "Selected MAAD works delivered with high quality and rigorous execution.",
+        "Selected HAYAT works delivered with high quality and rigorous execution.",
       browse: "Browse the Full Gallery",
     },
     faqsPage: {

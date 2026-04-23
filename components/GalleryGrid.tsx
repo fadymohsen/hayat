@@ -17,8 +17,8 @@ export type GalleryItem = {
 export const galleryItems: GalleryItem[] = [
   {
     src: "/projects/project-3.jpeg",
-    title: "MAAD Residential Complex",
-    titleAr: "مجمع معاد السكني",
+    title: "HAYAT Residential Complex",
+    titleAr: "مجمع حياة السكني",
     location: "Riyadh",
     locationAr: "الرياض",
     type: "large",

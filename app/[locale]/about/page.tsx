@@ -50,12 +50,16 @@ export default function AboutPage() {
           <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-5xl md:text-6xl">
             {t.about.title}
           </h1>
-          <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-slate-600 dark:text-white sm:text-lg">
-            {t.about.subtitle}
-          </p>
-          <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-slate-500 dark:text-white sm:text-base">
-            {t.about.intro}
-          </p>
+          {t.about.subtitle && (
+            <p className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-slate-600 dark:text-white sm:text-lg">
+              {t.about.subtitle}
+            </p>
+          )}
+          {t.about.intro && (
+            <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-slate-500 dark:text-white sm:text-base">
+              {t.about.intro}
+            </p>
+          )}
         </div>
       </section>
 
