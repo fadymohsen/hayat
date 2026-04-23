@@ -17,13 +17,6 @@ export type GalleryItem = {
 
 export const galleryItems: GalleryItem[] = [
   {
-    src: "/projects/Hayat Hotel-1.jpg",
-    title: "Hayat Tower — Exterior View",
-    titleAr: "برج حياة — المظهر الخارجي",
-    location: "Riyadh",
-    locationAr: "الرياض",
-  },
-  {
     src: "/projects/Hayat Hotel-2.jpg",
     title: "Hayat Tower — Luxury Suite",
     titleAr: "برج حياة — جناح فاخر",
@@ -48,6 +41,13 @@ export const galleryItems: GalleryItem[] = [
     src: "/projects/Riyadh Villa-1.png",
     title: "Riyadh Luxury Villas",
     titleAr: "فلل الرياض الفاخرة",
+    location: "Riyadh",
+    locationAr: "الرياض",
+  },
+  {
+    src: "/projects/Riyadh Villa-2.png",
+    title: "Riyadh Villa — Stone Facade",
+    titleAr: "فلل الرياض — واجهة حجرية",
     location: "Riyadh",
     locationAr: "الرياض",
   },
