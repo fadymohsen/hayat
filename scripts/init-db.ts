@@ -109,6 +109,56 @@ async function init() {
     }
     console.log('✓ Initial settings seeded');
 
+    // Initial Services
+    const initialServices = [
+      {
+        title_en: "Real Estate Development",
+        title_ar: "التطوير العقاري",
+        description_en: "Visionary residential and commercial projects built to the highest standards.",
+        description_ar: "مشاريع سكنية وتجارية طموحة مبنية وفق أعلى المعايير.",
+        icon_name: "Building2"
+      },
+      {
+        title_en: "Property Management",
+        title_ar: "إدارة الأملاك",
+        description_en: "Comprehensive management services to maximize your asset value.",
+        description_ar: "خدمات إدارة شاملة لتعظيم قيمة أصولك.",
+        icon_name: "Briefcase"
+      },
+      {
+        title_en: "Real Estate Marketing",
+        title_ar: "التسويق العقاري",
+        description_en: "Strategic marketing campaigns to reach your target audience effectively.",
+        description_ar: "حملات تسويقية استراتيجية للوصول إلى جمهورك المستهدف بفعالية.",
+        icon_name: "Megaphone"
+      }
+    ];
+
+    for (const s of initialServices) {
+      await sql`
+        INSERT INTO services (title_en, title_ar, description_en, description_ar, icon_name)
+        VALUES (${s.title_en}, ${s.title_ar}, ${s.description_en}, ${s.description_ar}, ${s.icon_name})
+      `;
+    }
+    console.log('✓ Initial services seeded');
+
+    // Initial Partners
+    const initialPartners = [
+      { name: "Partner 1", type: "strategic", image_url: "/Partners/Gemini_Generated_Image_8fpph78fpph78fpp-removebg-preview.png" },
+      { name: "Partner 2", type: "strategic", image_url: "/Partners/Gemini_Generated_Image_wvoysiwvoysiwvoy-removebg-preview.png" },
+      { name: "Client 1", type: "success", image_url: "/clients/Gemini_Generated_Image_bn843sbn843sbn84-removebg-preview.png" },
+      { name: "Client 2", type: "success", image_url: "/clients/Gemini_Generated_Image_hed5t4hed5t4hed5-removebg-preview.png" },
+      { name: "Client 3", type: "success", image_url: "/clients/Gemini_Generated_Image_x29oukx29oukx29o.png" }
+    ];
+
+    for (const p of initialPartners) {
+      await sql`
+        INSERT INTO partners (name, type, image_url)
+        VALUES (${p.name}, ${p.type}, ${p.image_url})
+      `;
+    }
+    console.log('✓ Initial partners seeded');
+
     console.log('Database initialization complete!');
   } catch (error) {
     console.error('Error initializing database:', error);
