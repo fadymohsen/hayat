@@ -376,14 +376,14 @@ export function AdminDashboard() {
                       });
                     }}
                     className={cn(
-                      "relative inline-flex h-7 w-12 shrink-0 cursor-pointer rounded-full transition-colors duration-200",
+                      "relative inline-flex h-7 w-12 shrink-0 cursor-pointer items-center rounded-full transition-colors duration-200",
                       settings.careers_visible !== 'false' ? "bg-maad-600" : "bg-slate-300 dark:bg-slate-700"
                     )}
                   >
                     <span
                       className={cn(
-                        "inline-block h-5 w-5 rounded-full bg-white shadow-md transform transition-transform duration-200 mt-1",
-                        settings.careers_visible !== 'false' ? "translate-x-1" : "translate-x-6"
+                        "inline-block h-5 w-5 rounded-full bg-white shadow-md transform transition-transform duration-200",
+                        settings.careers_visible !== 'false' ? "ltr:translate-x-6 rtl:-translate-x-6" : "ltr:translate-x-1 rtl:-translate-x-1"
                       )}
                     />
                   </button>
