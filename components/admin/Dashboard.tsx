@@ -280,7 +280,10 @@ export function AdminDashboard() {
         {loading ? (
           <div className="flex h-64 items-center justify-center">
             <Loader2 className="h-10 w-10 animate-spin text-maad-600" />
-                   {activeTab === "projects" && (
+          </div>
+        ) : (
+          <div className="space-y-12">
+            {activeTab === "projects" && (
               <div className="grid gap-12 lg:grid-cols-12">
                 <div className="lg:col-span-5">
                   <div className="sticky top-10">
@@ -554,7 +557,7 @@ export function AdminDashboard() {
                           <div className="group relative aspect-video rounded-[2rem] border-2 border-dashed border-slate-100 bg-slate-50 flex items-center justify-center overflow-hidden">
                             {settingsForm.home_who_we_are_image ? <Image src={settingsForm.home_who_we_are_image} alt="Who" fill className="object-cover" /> : <Upload className="h-6 w-6 text-slate-300" />}
                             <input type="file" className="hidden" id="who-img" onChange={e => handleImageUpload(e, 'setting', 'home_who_we_are_image')} />
-                            <Button variant="secondary" size="sm" className="absolute bottom-4 rounded-full opacity-0 group-hover:opacity-100" onClick={() => document.getElementById('who-img')?.click()}>تغيير الصورة</Button>
+                            <Button variant="outline" size="sm" className="absolute bottom-4 rounded-full opacity-0 group-hover:opacity-100" onClick={() => document.getElementById('who-img')?.click()}>تغيير الصورة</Button>
                           </div>
                         </div>
                         <div className="space-y-4">
@@ -562,7 +565,7 @@ export function AdminDashboard() {
                           <div className="group relative aspect-video rounded-[2rem] border-2 border-dashed border-slate-100 bg-slate-50 flex items-center justify-center overflow-hidden">
                             {settingsForm.home_active_development_image ? <Image src={settingsForm.home_active_development_image} alt="Active" fill className="object-cover" /> : <Upload className="h-6 w-6 text-slate-300" />}
                             <input type="file" className="hidden" id="active-img" onChange={e => handleImageUpload(e, 'setting', 'home_active_development_image')} />
-                            <Button variant="secondary" size="sm" className="absolute bottom-4 rounded-full opacity-0 group-hover:opacity-100" onClick={() => document.getElementById('active-img')?.click()}>تغيير الصورة</Button>
+                            <Button variant="outline" size="sm" className="absolute bottom-4 rounded-full opacity-0 group-hover:opacity-100" onClick={() => document.getElementById('active-img')?.click()}>تغيير الصورة</Button>
                           </div>
                         </div>
                       </div>
