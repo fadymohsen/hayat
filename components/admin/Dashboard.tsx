@@ -728,7 +728,7 @@ export function AdminDashboard() {
                   <Button
                     onClick={closeModal}
                     variant="outline"
-                    className="rounded-xl px-6 h-11 border-slate-200 dark:border-slate-700 dark:text-white"
+                    className="rounded-xl px-6 h-11 border-slate-200 dark:border-slate-700 dark:text-slate-900 dark:bg-white dark:hover:bg-slate-100"
                   >
                     إلغاء
                   </Button>
