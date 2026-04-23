@@ -291,15 +291,7 @@ export default function HomePage() {
       </section>
 
       {/* SERVICES */}
-      <section className="relative overflow-hidden bg-slate-50 py-24 dark:bg-slate-900/50 sm:py-32">
-        <Image
-          src="/services-bg.jpg"
-          alt=""
-          fill
-          className="object-cover opacity-20"
-          aria-hidden
-        />
-        <div className="absolute inset-0 bg-slate-950/50" aria-hidden />
+      <section className="relative bg-slate-50 py-24 dark:bg-slate-900/50 sm:py-32">
         <div className="absolute inset-0 bg-grid" />
         <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading
