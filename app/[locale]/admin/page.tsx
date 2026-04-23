@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useLanguage } from "@/components/LanguageProvider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Lock, User } from "lucide-react";
+import { Lock, User, Loader2 } from "lucide-react";
 
 import { motion } from "framer-motion";
 
