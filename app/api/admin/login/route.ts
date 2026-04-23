@@ -1,0 +1,19 @@
+import { NextResponse } from 'next/server';
+
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+    const { password } = body;
+
+    // In a real app, use an environment variable for the password
+    const adminPassword = process.env.ADMIN_PASSWORD || "admin123";
+
+    if (password === adminPassword) {
+      return NextResponse.json({ success: true });
+    } else {
+      return NextResponse.json({ error: 'Invalid password' }, { status: 401 });
+    }
+  } catch (error) {
+    return NextResponse.json({ error: 'Invalid request' }, { status: 400 });
+  }
+}

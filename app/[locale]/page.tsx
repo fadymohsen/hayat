@@ -64,7 +64,7 @@ export default function HomePage() {
     <>
       
       {/* 100vh VIDEO HERO */}
-      <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
+      <section className="relative h-[100dvh] min-h-[600px] w-full flex items-center justify-center overflow-hidden">
         
         {/* Video Background */}
         <video 
@@ -353,7 +353,6 @@ export default function HomePage() {
 
           <div className="mt-14">
             <GalleryGrid
-              items={galleryItems.slice(0, 6)}
               locale={locale}
             />
           </div>

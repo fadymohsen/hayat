@@ -2,11 +2,14 @@
 
 import Link from "next/link";
 import { MapPin, Phone, MessageCircle, Mail, ShieldCheck, BadgeCheck } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { Logo } from "./Logo";
 import { useLanguage } from "./LanguageProvider";
 
 export function Footer() {
   const { t, locale } = useLanguage();
+  const pathname = usePathname();
+  if (pathname.includes('/admin')) return null;
   const year = new Date().getFullYear();
 
   const quick = [

@@ -15,50 +15,7 @@ export type GalleryItem = {
   type?: "large" | "tall" | "wide" | "normal";
 };
 
-export const galleryItems: GalleryItem[] = [
-  {
-    src: "/projects/Hayat Hotel-2.jpg",
-    title: "Hayat Tower — Luxury Suite",
-    titleAr: "برج حياة — جناح فاخر",
-    location: "Riyadh",
-    locationAr: "الرياض",
-  },
-  {
-    src: "/projects/Hayat Hotel-3.jpg",
-    title: "Hayat Tower — Premium Bathroom",
-    titleAr: "برج حياة — حمام فاخر",
-    location: "Riyadh",
-    locationAr: "الرياض",
-  },
-  {
-    src: "/projects/Infrastructure.png",
-    title: "Infrastructure & Construction Works",
-    titleAr: "أعمال البنية التحتية والإنشاءات",
-    location: "Riyadh",
-    locationAr: "الرياض",
-  },
-  {
-    src: "/projects/Riyadh Villa-1.png",
-    title: "Riyadh Luxury Villas",
-    titleAr: "فلل الرياض الفاخرة",
-    location: "Riyadh",
-    locationAr: "الرياض",
-  },
-  {
-    src: "/projects/Riyadh Villa-2.png",
-    title: "Riyadh Villa — Stone Facade",
-    titleAr: "فلل الرياض — واجهة حجرية",
-    location: "Riyadh",
-    locationAr: "الرياض",
-  },
-  {
-    src: "/projects/project-3.png",
-    title: "Hayat Serviced Apartments",
-    titleAr: "شقق حياة الفندقية",
-    location: "Riyadh",
-    locationAr: "الرياض",
-  },
-];
+export const galleryItems: GalleryItem[] = [];
 
 function Lightbox({
   items,
@@ -195,13 +152,46 @@ function Lightbox({
 }
 
 export function GalleryGrid({
-  items = galleryItems,
+  items: initialItems,
   locale,
 }: {
   items?: GalleryItem[];
   locale: "ar" | "en";
 }) {
+  const [items, setItems] = useState<GalleryItem[]>(initialItems || galleryItems);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [loading, setLoading] = useState(!initialItems);
+
+  useEffect(() => {
+    if (initialItems) return;
+
+    async function fetchProjects() {
+      try {
+        const response = await fetch("/api/projects");
+        if (response.ok) {
+          const data = await response.json();
+          if (data && data.length > 0) {
+            // Map DB fields to GalleryItem fields
+            const mappedItems = data.map((p: any) => ({
+              src: p.image_url,
+              title: p.title_en,
+              titleAr: p.title_ar,
+              location: p.location_en,
+              locationAr: p.location_ar,
+              type: p.type
+            }));
+            setItems(mappedItems);
+          }
+        }
+      } catch (error) {
+        console.error("Failed to fetch projects:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchProjects();
+  }, [initialItems]);
 
   const closeLightbox = useCallback(() => setLightboxIndex(null), []);
   const goPrev = useCallback(
@@ -212,6 +202,16 @@ export function GalleryGrid({
     () => setLightboxIndex((i) => (i !== null ? (i + 1) % items.length : null)),
     [items.length]
   );
+
+  if (loading) {
+    return (
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {[1, 2, 3, 4, 5, 6].map((i) => (
+          <div key={i} className="aspect-[4/3] animate-pulse rounded-2xl bg-slate-100 dark:bg-slate-800" />
+        ))}
+      </div>
+    );
+  }
 
   return (
     <>

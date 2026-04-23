@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Briefcase, MapPin, Clock, Send, Users, TrendingUp, Heart, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/components/LanguageProvider";
@@ -39,6 +40,36 @@ const openings = {
 export default function CareersPage() {
   const { t, locale } = useLanguage();
   const isAr = locale === "ar";
+  
+  const [activeOpenings, setActiveOpenings] = useState<any[]>(openings[locale]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchJobs() {
+      try {
+        const response = await fetch("/api/jobs");
+        if (response.ok) {
+          const data = await response.json();
+          if (data && data.length > 0) {
+            // Map DB fields to current structure
+            const mappedJobs = data.map((j: any) => ({
+              title: isAr ? j.title_ar : j.title_en,
+              department: isAr ? j.department_ar : j.department_en,
+              location: isAr ? j.location_ar : j.location_en,
+              type: isAr ? j.type_ar : j.type_en
+            }));
+            setActiveOpenings(mappedJobs);
+          }
+        }
+      } catch (error) {
+        console.error("Failed to fetch jobs:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchJobs();
+  }, [isAr]);
 
   return (
     <>
@@ -102,40 +133,46 @@ export default function CareersPage() {
             </h2>
           </div>
           <div className="space-y-4">
-            {openings[locale].map((job, i) => (
-              <motion.div
-                key={job.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="group flex flex-col gap-4 rounded-2xl bg-white p-6 ring-1 ring-slate-100 transition hover:shadow-lg hover:ring-maad-200 dark:bg-slate-900 dark:ring-slate-800 dark:hover:ring-maad-500/30 sm:flex-row sm:items-center sm:justify-between"
-              >
-                <div>
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white">{job.title}</h3>
-                  <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-slate-500 dark:text-slate-400">
-                    <span className="flex items-center gap-1">
-                      <Briefcase className="h-4 w-4" />
-                      {job.department}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <MapPin className="h-4 w-4" />
-                      {job.location}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Clock className="h-4 w-4" />
-                      {job.type}
-                    </span>
+            {loading ? (
+              [1, 2, 3].map((i) => (
+                <div key={i} className="h-24 w-full animate-pulse rounded-2xl bg-white dark:bg-slate-900" />
+              ))
+            ) : (
+              activeOpenings.map((job, i) => (
+                <motion.div
+                  key={job.title + i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.4, delay: i * 0.08 }}
+                  className="group flex flex-col gap-4 rounded-2xl bg-white p-6 ring-1 ring-slate-100 transition hover:shadow-lg hover:ring-maad-200 dark:bg-slate-900 dark:ring-slate-800 dark:hover:ring-maad-500/30 sm:flex-row sm:items-center sm:justify-between"
+                >
+                  <div>
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white">{job.title}</h3>
+                    <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-slate-500 dark:text-slate-400">
+                      <span className="flex items-center gap-1">
+                        <Briefcase className="h-4 w-4" />
+                        {job.department}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <MapPin className="h-4 w-4" />
+                        {job.location}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Clock className="h-4 w-4" />
+                        {job.type}
+                      </span>
+                    </div>
                   </div>
-                </div>
-                <Button asChild size="sm" className="shrink-0 dark:bg-maad-500 dark:text-white dark:hover:bg-maad-400">
-                  <a href="mailto:Info@saudihayat.com">
-                    <Send className="h-4 w-4" />
-                    {isAr ? "تقدم الآن" : "Apply Now"}
-                  </a>
-                </Button>
-              </motion.div>
-            ))}
+                  <Button asChild size="sm" className="shrink-0 dark:bg-maad-500 dark:text-white dark:hover:bg-maad-400">
+                    <a href="mailto:Info@saudihayat.com">
+                      <Send className="h-4 w-4" />
+                      {isAr ? "تقدم الآن" : "Apply Now"}
+                    </a>
+                  </Button>
+                </motion.div>
+              ))
+            )}
           </div>
 
           {/* General Application */}

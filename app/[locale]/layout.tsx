@@ -56,7 +56,13 @@ export default async function LocaleLayout({
   return (
     <ThemeProvider>
       <LanguageProvider locale={validLocale}>
-        <div className="flex min-h-screen flex-col">
+        <div 
+          className={cn(
+            "flex min-h-screen flex-col overflow-x-hidden",
+            validLocale === "ar" ? "font-arabic" : "font-english"
+          )}
+          dir={validLocale === "ar" ? "rtl" : "ltr"}
+        >
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />

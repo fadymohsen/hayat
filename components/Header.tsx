@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 export function Header() {
   const { t, locale } = useLanguage();
   const pathname = usePathname();
+  if (pathname.includes('/admin')) return null;
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -59,7 +60,7 @@ export function Header() {
     <>
     <header
       className={cn(
-        "fixed top-0 z-50 w-full px-4 sm:px-6 transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 transition-all duration-300",
         locale === "ar" ? "font-arabic" : "font-english"
       )}
     >
