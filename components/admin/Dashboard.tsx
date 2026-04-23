@@ -443,9 +443,27 @@ export function AdminDashboard() {
                           </div>
                           <div className="space-y-1.5">
                             <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400">نوع الدوام</label>
-                            <Input placeholder="Full-time" value={jobForm.type_en} onChange={e => setJobForm({...jobForm, type_en: e.target.value})} required className="text-left dir-ltr h-12 rounded-xl bg-slate-50" />
-                            <Input placeholder="نوع الدوام" value={jobForm.type_ar} onChange={e => setJobForm({...jobForm, type_ar: e.target.value})} required className="text-right h-12 rounded-xl bg-slate-50" />
+                            <select
+                              value={jobForm.type_en}
+                              onChange={e => {
+                                const val = e.target.value;
+                                const arMap: Record<string, string> = { "Full-time": "دوام كامل", "Part-time": "دوام جزئي", "Freelance": "عمل حر" };
+                                setJobForm({...jobForm, type_en: val, type_ar: arMap[val] || val });
+                              }}
+                              required
+                              className="w-full h-12 rounded-xl bg-slate-50 border border-slate-200 px-4 text-sm font-medium text-slate-700 focus:border-maad-400 focus:outline-none dark:bg-slate-800 dark:border-slate-700 dark:text-white"
+                            >
+                              <option value="" disabled>— اختر —</option>
+                              <option value="Full-time">Full-time / دوام كامل</option>
+                              <option value="Part-time">Part-time / دوام جزئي</option>
+                              <option value="Freelance">Freelance / عمل حر</option>
+                            </select>
                           </div>
+                        </div>
+                        <div className="space-y-1.5">
+                          <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400">المدينة</label>
+                          <Input placeholder="City (EN)" value={jobForm.location_en} onChange={e => setJobForm({...jobForm, location_en: e.target.value})} required className="text-left dir-ltr h-12 rounded-xl bg-slate-50" />
+                          <Input placeholder="المدينة بالعربية" value={jobForm.location_ar} onChange={e => setJobForm({...jobForm, location_ar: e.target.value})} required className="text-right h-12 rounded-xl bg-slate-50" />
                         </div>
                         <Button type="submit" className="w-full h-14 rounded-2xl bg-maad-600 text-white font-bold">
                           {editingId ? "تحديث الوظيفة" : "نشر الوظيفة"}
