@@ -42,21 +42,18 @@ export function PartnersGrid() {
           </h2>
         </div>
 
-        <div className={cn(
-          "mx-auto grid items-center gap-8",
-          partners.length === 1 ? "max-w-sm grid-cols-1" : "max-w-4xl grid-cols-2 md:grid-cols-3"
-        )}>
+        <div className="flex flex-wrap items-center justify-center gap-8">
           {partners.map((partner) => (
             <div
               key={partner.id}
-              className="flex items-center justify-center rounded-2xl bg-slate-50 p-8 ring-1 ring-slate-100 transition hover:shadow-lg hover:ring-maad-200 dark:bg-slate-900 dark:ring-slate-800 dark:hover:ring-maad-500/30"
+              className="flex h-32 w-48 items-center justify-center rounded-[2rem] bg-slate-50 p-8 ring-1 ring-slate-100 transition hover:shadow-xl hover:ring-maad-200 dark:bg-slate-900 dark:ring-slate-800 dark:hover:ring-maad-500/30 sm:h-40 sm:w-64"
             >
               <Image
                 src={partner.image_url}
                 alt={partner.name}
                 width={220}
                 height={110}
-                className="max-h-20 w-auto object-contain sm:max-h-28"
+                className="max-h-20 w-auto object-contain sm:max-h-28 transition-transform hover:scale-110"
               />
             </div>
           ))}

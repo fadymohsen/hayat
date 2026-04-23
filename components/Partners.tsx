@@ -58,53 +58,66 @@ export function Partners() {
           </h2>
         </div>
 
-        {/* ULTRA-SMOOTH CONTINUOUS MARQUEE (NO-JS DEPENDENCY) */}
-        <div className="group relative flex overflow-hidden py-10">
-          {/* Left/Right Fades for premium feel */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-slate-50 to-transparent dark:from-slate-950 sm:w-48" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-slate-50 to-transparent dark:from-slate-950 sm:w-48" />
-
-          {/* Marquee Wrapper */}
-          <div className="flex w-fit animate-marquee whitespace-nowrap group-hover:[animation-play-state:paused]">
-            {/* 
-              We use 4 sets to ensure perfect continuity even on ultra-wide screens.
-              The animation moves from 0 to -25% (since we have 4 sets) 
-              Wait, simpler: 2 sets and -50%.
-            */}
-            {displayPartners.map((item, i) => (
+        {partners.length < 5 ? (
+          <div className="flex flex-wrap items-center justify-center gap-8 py-10">
+            {partners.map((item, i) => (
               <div 
                 key={i} 
-                className="mx-8 flex shrink-0 items-center justify-center w-[160px] sm:w-[220px] transition-all duration-500 hover:scale-110"
+                className="group relative flex aspect-square w-32 items-center justify-center rounded-[2rem] bg-white p-6 shadow-sm ring-1 ring-slate-100 transition-all hover:shadow-xl dark:bg-slate-900 dark:ring-slate-800 sm:w-48"
               >
                 <Image
                   src={item.image_url}
                   alt={item.name}
                   width={220}
                   height={110}
-                  className="max-h-16 w-auto object-contain sm:max-h-24"
+                  className="max-h-16 w-auto object-contain sm:max-h-24 transition-transform group-hover:scale-110"
                 />
               </div>
             ))}
           </div>
-          
-          {/* Duplicate set for seamless looping */}
-          <div className="flex w-fit animate-marquee whitespace-nowrap group-hover:[animation-play-state:paused]" aria-hidden="true">
-            {displayPartners.map((item, i) => (
-              <div 
-                key={`dup-${i}`} 
-                className="mx-8 flex shrink-0 items-center justify-center w-[160px] sm:w-[220px] transition-all duration-500 hover:scale-110"
-              >
-                <Image
-                  src={item.image_url}
-                  alt={item.name}
-                  width={220}
-                  height={110}
-                  className="max-h-16 w-auto object-contain sm:max-h-24"
-                />
-              </div>
-            ))}
+        ) : (
+          <div className="group relative flex overflow-hidden py-10">
+            {/* Left/Right Fades for premium feel */}
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-slate-50 to-transparent dark:from-slate-950 sm:w-48" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-slate-50 to-transparent dark:from-slate-950 sm:w-48" />
+
+            {/* Marquee Wrapper */}
+            <div className="flex w-fit animate-marquee whitespace-nowrap group-hover:[animation-play-state:paused]">
+              {displayPartners.map((item, i) => (
+                <div 
+                  key={i} 
+                  className="mx-8 flex shrink-0 items-center justify-center w-[160px] sm:w-[220px] transition-all duration-500 hover:scale-110"
+                >
+                  <Image
+                    src={item.image_url}
+                    alt={item.name}
+                    width={220}
+                    height={110}
+                    className="max-h-16 w-auto object-contain sm:max-h-24"
+                  />
+                </div>
+              ))}
+            </div>
+            
+            {/* Duplicate set for seamless looping */}
+            <div className="flex w-fit animate-marquee whitespace-nowrap group-hover:[animation-play-state:paused]" aria-hidden="true">
+              {displayPartners.map((item, i) => (
+                <div 
+                  key={`dup-${i}`} 
+                  className="mx-8 flex shrink-0 items-center justify-center w-[160px] sm:w-[220px] transition-all duration-500 hover:scale-110"
+                >
+                  <Image
+                    src={item.image_url}
+                    alt={item.name}
+                    width={220}
+                    height={110}
+                    className="max-h-16 w-auto object-contain sm:max-h-24"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       <style jsx global>{`
