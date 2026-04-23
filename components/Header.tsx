@@ -131,7 +131,7 @@ export function Header() {
     </header>
 
       {/* Spacer for fixed header on non-home pages */}
-      {!isHome && <div className="h-28" />}
+      {!isHome && <div className="h-36" />}
 
       {/* Full Screen Mobile Menu */}
       <AnimatePresence>
