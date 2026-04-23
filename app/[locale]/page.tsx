@@ -207,7 +207,7 @@ export default function HomePage() {
             >
               <div className="relative w-full aspect-[3/4] rounded-[2rem] overflow-hidden shadow-2xl ring-1 ring-slate-200 dark:ring-slate-800">
                 <Image
-                  src="/hero/hayat-tower.jpeg"
+                  src="/projects/project-1.jpg"
                   alt="Hayat Tower active construction"
                   fill
                   className="object-cover transition-transform duration-700 hover:scale-105"
