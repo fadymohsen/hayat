@@ -25,7 +25,7 @@ export function Logo({
           "relative flex items-center justify-start transition-transform group-hover:scale-105",
           white ? "brightness-0 invert" : ""
         )}
-        style={{ width: 180, height: 75 }}
+        style={{ width: 220, height: 90 }}
       >
         <Image
           src="/logo/logo-transperent.png"

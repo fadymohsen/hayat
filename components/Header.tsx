@@ -65,7 +65,7 @@ export function Header() {
       )}
     >
       <div className={cn(
-        "mx-auto mt-4 flex h-20 w-full max-w-6xl items-center justify-between gap-4 rounded-full px-5 transition-all duration-300 sm:px-8",
+        "mx-auto mt-4 flex h-24 w-full max-w-6xl items-center justify-between gap-4 rounded-full px-5 transition-all duration-300 sm:px-8",
         isTransparent
           ? "bg-black/30 backdrop-blur-md border border-white/15 shadow-lg"
           : "bg-white/95 backdrop-blur-md border border-slate-200 shadow-md dark:bg-slate-950/95 dark:border-slate-800"
@@ -131,7 +131,7 @@ export function Header() {
     </header>
 
       {/* Spacer for fixed header on non-home pages */}
-      {!isHome && <div className="h-24" />}
+      {!isHome && <div className="h-28" />}
 
       {/* Full Screen Mobile Menu */}
       <AnimatePresence>
