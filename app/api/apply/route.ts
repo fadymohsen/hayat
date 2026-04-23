@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
 
     const { data, error: sendError } = await resend.emails.send({
       from: FROM_EMAIL,
-      to: TO_EMAIL,
+      to: [TO_EMAIL],
       replyTo: email,
       subject: `New Job Application: ${jobTitle}`,
       html: `
