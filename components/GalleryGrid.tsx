@@ -219,7 +219,7 @@ export function GalleryGrid({
 
   return (
     <>
-      <div className="flex snap-x snap-mandatory overflow-x-auto gap-4 pb-6 hide-scrollbar md:grid md:flex-none md:snap-none md:overflow-visible md:bento-grid">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((p, i) => (
           <motion.div
             key={p.src}
@@ -227,13 +227,7 @@ export function GalleryGrid({
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.4, delay: (i % 8) * 0.05 }}
-            className={cn(
-              "group relative cursor-pointer overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-200 transition-all duration-500 hover:shadow-2xl hover:ring-maad-400",
-              "min-w-[85vw] sm:min-w-[60vw] snap-center shrink-0 aspect-[4/5] md:aspect-auto md:w-auto md:min-w-0 md:shrink md:snap-align-none",
-              p.type === "large" && "md:bento-item-large",
-              p.type === "tall" && "md:bento-item-tall",
-              p.type === "wide" && "md:bento-item-wide"
-            )}
+            className="group relative cursor-pointer overflow-hidden rounded-2xl bg-slate-100 shadow-sm ring-1 ring-slate-200 transition-all duration-500 hover:shadow-2xl hover:ring-maad-400 aspect-[4/3]"
             onClick={() => setLightboxIndex(i)}
           >
             <div className="relative h-full w-full">
