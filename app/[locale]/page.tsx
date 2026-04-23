@@ -25,6 +25,7 @@ import { GalleryGrid, galleryItems } from "@/components/GalleryGrid";
 import { useLanguage } from "@/components/LanguageProvider";
 import { cn } from "@/lib/utils";
 import { Partners } from "@/components/Partners";
+import { PartnersGrid } from "@/components/PartnersGrid";
 
 export default function HomePage() {
   const { t, locale } = useLanguage();
@@ -329,6 +330,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* PARTNERS */}
+      <PartnersGrid />
 
       {/* FEATURED PROJECTS */}
       <section className="relative bg-white py-24 dark:bg-slate-950 sm:py-32">

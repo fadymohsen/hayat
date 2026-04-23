@@ -17,6 +17,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { useLanguage } from "@/components/LanguageProvider";
 import { Partners } from "@/components/Partners";
+import { PartnersGrid } from "@/components/PartnersGrid";
 
 
 export default function AboutPage() {
@@ -203,6 +204,9 @@ export default function AboutPage() {
       </section>
 
       {/* PARTNERS */}
+      <PartnersGrid />
+
+      {/* CLIENTS */}
       <Partners />
     </>
   );
