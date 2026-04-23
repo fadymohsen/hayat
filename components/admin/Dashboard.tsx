@@ -577,14 +577,6 @@ export function AdminDashboard() {
                 </section>
               </div>
             )}
-" className="h-12 w-12 rounded-full text-slate-300 hover:text-red-500 hover:bg-red-50 transition-all opacity-0 group-hover:opacity-100" onClick={() => handleDelete("jobs", j.id)}>
-                          <Trash2 className="h-5 w-5" />
-                        </Button>
-                      </div>
-                    </article>
-                  ))}
-                </div>
-              </div>
           </div>
         )}
 
