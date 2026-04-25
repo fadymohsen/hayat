@@ -5,7 +5,7 @@ import { Project, Job, Service, Partner, Setting } from "@/lib/db";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import * as Icons from "lucide-react";
-const { Plus, Trash2, LayoutGrid, Briefcase, LogOut, Upload, Loader2, Check, Phone, Mail, MessageCircle, Globe, Users, Wrench, ShieldCheck, Award, AlertTriangle, CheckCircle, X, XCircle } = Icons;
+const { Plus, Trash2, LayoutGrid, Briefcase, LogOut, Upload, Loader2, Check, Phone, Mail, MessageCircle, Globe, Users, Wrench, ShieldCheck, Award, AlertTriangle, CheckCircle, X, XCircle, Pencil } = Icons;
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
@@ -604,9 +604,9 @@ export function AdminDashboard() {
                       <span className="mt-1 text-[10px] font-bold text-maad-600 bg-maad-50 px-2 py-0.5 rounded-full">
                         {p.type === 'strategic' ? 'شريك' : 'عميل'}
                       </span>
-                      <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity rounded-[2rem] flex items-center justify-center gap-2">
-                        <Button size="icon" variant="ghost" className="h-10 w-10 rounded-full bg-white text-slate-900" onClick={() => startEditPartner(p)}><Plus className="h-4 w-4" /></Button>
-                        <Button size="icon" variant="ghost" className="h-10 w-10 rounded-full bg-white text-red-600" onClick={() => handleDelete("partners", p.id)}><Trash2 className="h-4 w-4" /></Button>
+                      <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity rounded-[2rem] flex items-center justify-center gap-3">
+                        <Button size="icon" variant="ghost" className="h-10 w-10 rounded-full bg-white text-maad-600 hover:bg-maad-50" onClick={() => startEditPartner(p)}><Pencil className="h-4 w-4" /></Button>
+                        <Button size="icon" variant="ghost" className="h-10 w-10 rounded-full bg-white text-red-600 hover:bg-red-50" onClick={() => handleDelete("partners", p.id)}><Trash2 className="h-4 w-4" /></Button>
                       </div>
                     </article>
                   ))}
