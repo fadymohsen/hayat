@@ -21,6 +21,7 @@ export async function POST(request: Request): Promise<NextResponse> {
 
     const blob = await put(filename || file.name, file, {
       access: 'public',
+      addRandomSuffix: true,
     });
 
     console.log('API Upload: Success:', blob.url);

@@ -572,10 +572,10 @@ export function AdminDashboard() {
                           <select 
                             value={partnerForm.type} 
                             onChange={e => setPartnerForm({...partnerForm, type: e.target.value as any})}
-                            className="w-full h-12 rounded-xl bg-slate-50 border-transparent focus:border-maad-300 px-4 font-bold"
+                            className="w-full h-12 rounded-xl bg-slate-50 border-transparent focus:border-maad-300 px-4 font-bold text-slate-900"
                           >
-                            <option value="strategic">شركاء استراتيجيون</option>
-                            <option value="success">شركاء النجاح</option>
+                            <option value="strategic">شريك</option>
+                            <option value="success">عميل</option>
                           </select>
                         </div>
                         <div className="pt-2">
@@ -602,7 +602,7 @@ export function AdminDashboard() {
                       </div>
                       <p className="mt-4 text-xs font-bold text-slate-400 dark:text-slate-300">{p.name}</p>
                       <span className="mt-1 text-[10px] font-bold text-maad-600 bg-maad-50 px-2 py-0.5 rounded-full">
-                        {p.type === 'strategic' ? 'استراتيجي' : 'نجاح'}
+                        {p.type === 'strategic' ? 'شريك' : 'عميل'}
                       </span>
                       <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity rounded-[2rem] flex items-center justify-center gap-2">
                         <Button size="icon" variant="ghost" className="h-10 w-10 rounded-full bg-white text-slate-900" onClick={() => startEditPartner(p)}><Plus className="h-4 w-4" /></Button>
