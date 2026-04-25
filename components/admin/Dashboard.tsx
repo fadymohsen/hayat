@@ -688,7 +688,7 @@ export function AdminDashboard() {
                     </div>
 
                     <div className="pt-8 flex justify-end">
-                      <Button type="submit" className="px-12 h-14 rounded-2xl bg-maad-600 text-white font-bold hover:bg-maad-700 hover:shadow-xl transition-all">
+                      <Button type="submit" size="lg" className="px-12 rounded-2xl font-bold hover:shadow-xl">
                          حفظ جميع الإعدادات
                       </Button>
                     </div>
