@@ -71,7 +71,6 @@ export default function ContactPage() {
   const phone = settings?.contact_phone || "0114741991";
   const whatsapp = settings?.contact_whatsapp || "+966 54 001 1644";
   const whatsappClean = whatsapp.replace(/\s+/g, '');
-  const locale = t === (await import("@/lib/i18n")).then ? "ar" : (t.common?.callNow === "اتصل الآن" ? "ar" : "en");
   const address = (locale === "ar" ? settings?.address_ar : settings?.address_en) || t.contact.address;
   const mapUrl = settings?.map_url || "https://maps.google.com/?q=24.706038,46.749329";
 
