@@ -301,7 +301,7 @@ export function AdminDashboard() {
               )}
             >
               <Users className="h-4 w-4" />
-              الشركاء
+              العملاء والشركاء
             </button>
             <button 
               onClick={() => { setActiveTab("settings"); setEditingId(null); }}
