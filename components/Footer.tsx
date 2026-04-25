@@ -83,7 +83,7 @@ export function Footer() {
                   <MapPin className="h-4 w-4" />
                 </span>
                 <span className="leading-relaxed dark:text-slate-300">
-                  {t.contact.address}
+                  {(locale === "ar" ? settings?.address_ar : settings?.address_en) || t.contact.address}
                 </span>
               </li>
               <li className="flex items-center gap-3">

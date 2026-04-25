@@ -20,7 +20,7 @@ import { useLanguage } from "@/components/LanguageProvider";
 import { useEffect } from "react";
 
 export default function ContactPage() {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [settings, setSettings] = useState<any>(null);
@@ -71,6 +71,9 @@ export default function ContactPage() {
   const phone = settings?.contact_phone || "0114741991";
   const whatsapp = settings?.contact_whatsapp || "+966 54 001 1644";
   const whatsappClean = whatsapp.replace(/\s+/g, '');
+  const locale = t === (await import("@/lib/i18n")).then ? "ar" : (t.common?.callNow === "اتصل الآن" ? "ar" : "en");
+  const address = (locale === "ar" ? settings?.address_ar : settings?.address_en) || t.contact.address;
+  const mapUrl = settings?.map_url || "https://maps.google.com/?q=24.706038,46.749329";
 
   const contactCards = [
     {
@@ -146,7 +149,7 @@ export default function ContactPage() {
                     Address
                   </p>
                   <p className="mt-1 text-sm leading-relaxed text-slate-700 dark:text-white dark:text-slate-300 sm:text-base">
-                    {t.contact.address}
+                    {address}
                   </p>
                 </div>
               </div>
@@ -179,7 +182,7 @@ export default function ContactPage() {
               <div className="overflow-hidden rounded-2xl border border-slate-100 shadow-sm dark:border-slate-800">
                 <iframe
                   title="Hayat Saudi location on map"
-                  src="https://www.google.com/maps?q=Al+Rabwa+District,+Riyadh,+Saudi+Arabia&output=embed"
+                  src={`https://www.google.com/maps?q=24.706038,46.749329&output=embed`}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   className="aspect-video w-full border-0 grayscale dark:invert"

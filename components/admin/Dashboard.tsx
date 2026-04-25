@@ -645,7 +645,23 @@ export function AdminDashboard() {
                         </div>
                       </div>
                     </div>
-                    
+
+                    <div className="grid gap-6 sm:grid-cols-2 mt-6">
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mr-1">العنوان (عربي)</label>
+                        <Input value={settingsForm.address_ar || ''} onChange={e => setSettingsForm({...settingsForm, address_ar: e.target.value})} className="h-12 rounded-xl bg-slate-50 text-right" placeholder="العنوان بالعربي" />
+                      </div>
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mr-1">العنوان (إنجليزي)</label>
+                        <Input value={settingsForm.address_en || ''} onChange={e => setSettingsForm({...settingsForm, address_en: e.target.value})} className="h-12 rounded-xl bg-slate-50 text-left dir-ltr" placeholder="Address in English" />
+                      </div>
+                    </div>
+
+                    <div className="mt-6 space-y-1.5">
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mr-1">رابط الخريطة (Google Maps)</label>
+                      <Input value={settingsForm.map_url || ''} onChange={e => setSettingsForm({...settingsForm, map_url: e.target.value})} className="h-12 rounded-xl bg-slate-50 text-left dir-ltr" placeholder="https://maps.google.com/?q=..." />
+                    </div>
+
                     <div className="pt-10 border-t border-slate-50">
                       <h3 className="text-xl font-bold flex items-center gap-3 mb-8">
                         <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-maad-50 text-maad-600"><LayoutGrid className="h-4 w-4" /></span>
